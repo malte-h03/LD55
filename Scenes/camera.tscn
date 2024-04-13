@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bgl2lx5vuqxoh"]
+
+[ext_resource type="Script" path="res://scripts/chr/player_camera.cs" id="1_ptbbh"]
+
+[node name="Camera" type="Node2D"]
+script = ExtResource("1_ptbbh")
+
+[node name="Camera2D" type="Camera2D" parent="."]

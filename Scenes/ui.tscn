@@ -20,10 +20,10 @@ startScene = ExtResource("2_g5yo2")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Menu_P"]
 layout_mode = 0
-offset_left = 459.0
-offset_top = 241.0
-offset_right = 786.0
-offset_bottom = 566.0
+offset_left = 69.0
+offset_top = 82.0
+offset_right = 396.0
+offset_bottom = 407.0
 
 [node name="Start game" type="Button" parent="Menu_P/VBoxContainer"]
 layout_mode = 2
