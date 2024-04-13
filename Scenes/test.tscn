@@ -15,3 +15,10 @@ offset_right = 117.0
 offset_bottom = 51.0
 text = "Wuddup World
 "
+
+[node name="I\'m all for them conflicts" type="Label" parent="."]
+offset_left = 328.0
+offset_top = 156.0
+offset_right = 516.0
+offset_bottom = 179.0
+text = "I'm all for them conflicts"
