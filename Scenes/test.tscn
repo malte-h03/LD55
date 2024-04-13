@@ -7,3 +7,11 @@ offset_right = 40.0
 offset_bottom = 23.0
 text = "Hello world
 "
+
+[node name="Wuddup World" type="Label" parent="."]
+offset_left = 1.0
+offset_top = 28.0
+offset_right = 117.0
+offset_bottom = 51.0
+text = "Wuddup World
+"
