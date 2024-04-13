@@ -3,8 +3,12 @@ using Godot;
 public partial class player : CharacterBody2D
 {
 	[Export] public float movementSpeed = 300.0f;
+	[Export] public float dashLength = 1.0f;
+	[Export] public double dashTime = 1.0;
 
 	private wave_manager WaveManager;
+
+	public bool isDashing = false;
 
     public override void _Ready()
     {
@@ -37,4 +41,17 @@ public partial class player : CharacterBody2D
 			WaveManager.startWave();
 		}
 	}
+
+    public override void _Input(InputEvent @event)
+    {
+        if (Input.IsActionJustPressed("DASH"))
+		{
+			isDashing = true;
+
+			Tween tween = GetTree().CreateTween();
+			tween.SetEase(Tween.EaseType.Out);
+			tween.TweenProperty(this, "global_position", GlobalPosition + Velocity * dashLength, dashTime).SetTrans(Tween.TransitionType.Cubic);
+			tween.TweenProperty(this, "isDashing", false, 0);
+		}
+    }
 }
