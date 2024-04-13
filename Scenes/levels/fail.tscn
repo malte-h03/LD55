@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://co2le5hjxt5h6"]
+[gd_scene load_steps=2 format=3 uid="uid://co2le5hjxt5h6"]
 
 [ext_resource type="Script" path="res://scripts/ui/fail_scene.cs" id="1_20sdp"]
-[ext_resource type="PackedScene" uid="uid://cor8upb3u2j37" path="res://Scenes/main.tscn" id="3_1u0d4"]
 
 [node name="Fail" type="CanvasLayer"]
 
@@ -18,8 +17,6 @@ offset_bottom = 33.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_20sdp")
-startScene = ExtResource("3_1u0d4")
-menuScene = ExtResource("3_1u0d4")
 
 [node name="Label" type="Label" parent="VBoxContainer"]
 layout_mode = 2
