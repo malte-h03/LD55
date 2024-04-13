@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://d3dmat0xa1y0m" path="res://Scenes/chr/player.tscn" id="1_va61m"]
 [ext_resource type="PackedScene" uid="uid://nyx8561rtbs1" path="res://Scenes/objects/portal.tscn" id="2_du7v3"]
-[ext_resource type="PackedScene" uid="uid://ggpcifpxs87r" path="res://Scenes/chr/agent.tscn" id="3_fq7g3"]
+[ext_resource type="PackedScene" uid="uid://cy72sd0dak885" path="res://Scenes/objects/enemy_spawner.tscn" id="4_nktyi"]
 
 [node name="Level01" type="Node2D"]
 
@@ -12,8 +12,11 @@ position = Vector2(431, 143)
 [node name="Portal" parent="." instance=ExtResource("2_du7v3")]
 position = Vector2(939, 287)
 
-[node name="Agent" parent="." instance=ExtResource("3_fq7g3")]
-position = Vector2(255, 410)
+[node name="EnemySpawner" parent="." instance=ExtResource("4_nktyi")]
+position = Vector2(391, 556)
 
-[node name="Agent2" parent="." instance=ExtResource("3_fq7g3")]
-position = Vector2(99, 291)
+[node name="EnemySpawner3" parent="." instance=ExtResource("4_nktyi")]
+position = Vector2(81, 63)
+
+[node name="EnemySpawner2" parent="." instance=ExtResource("4_nktyi")]
+position = Vector2(53, 407)

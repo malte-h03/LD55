@@ -10,6 +10,8 @@ public partial class agent : RigidBody2D
 	Vector2 movementVector = default;
 	CharacterBody2D playerRef;
 
+	wave_manager WaveManager;
+
 	Line2D hand;
 	public override void _Ready()
 	{
@@ -17,6 +19,8 @@ public partial class agent : RigidBody2D
 		AddChild(hand);
 		hand.AddPoint(Vector2.Zero, 0);
 		hand.AddPoint(Vector2.Zero, 1);
+
+		WaveManager = GetTree().Root.GetNode<wave_manager>("WaveManager");
 	}
 
 	public override void _Process(double delta)
@@ -53,6 +57,7 @@ public partial class agent : RigidBody2D
 
 	public void Kill()
 	{
+		WaveManager.EnemyDie(this);
 		QueueFree();
 	}
 

@@ -5,6 +5,7 @@ public partial class portal : Node2D
 {
 	// Called when the node enters the scene tree for the first time.
 	scene_manager sceneManager;
+	wave_manager WaveManager;
 	[Export] float suckingPower;
 	[Export] PackedScene failScene;
 
@@ -13,6 +14,7 @@ public partial class portal : Node2D
 	public override void _Ready()
 	{
 		sceneManager = GetTree().Root.GetNode<scene_manager>("SceneManager");
+		WaveManager = GetTree().Root.GetNode<wave_manager>("WaveManager");
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -30,6 +32,7 @@ public partial class portal : Node2D
 	{
 		if (body.IsInGroup("Player"))
 		{
+			WaveManager.CancelWave();
 			sceneManager.GotoScene(failScene);
 		}
 	}

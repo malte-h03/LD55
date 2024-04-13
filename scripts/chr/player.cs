@@ -4,7 +4,14 @@ public partial class player : CharacterBody2D
 {
 	[Export] public float movementSpeed = 300.0f;
 
-	public override void _PhysicsProcess(double delta)
+	private wave_manager WaveManager;
+
+    public override void _Ready()
+    {
+        WaveManager = GetTree().Root.GetNode<wave_manager>("WaveManager");
+    }
+
+    public override void _PhysicsProcess(double delta)
 	{
 		Vector2 velocity = Velocity;
 
@@ -24,5 +31,10 @@ public partial class player : CharacterBody2D
 
 		Velocity = velocity;
 		MoveAndSlide();
+
+		if(Input.IsActionJustPressed("ui_up"))
+		{
+			WaveManager.startWave();
+		}
 	}
 }
