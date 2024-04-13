@@ -1,4 +1,42 @@
-[gd_scene format=3 uid="uid://hmgka12dhrys"]
+[gd_scene load_steps=9 format=3 uid="uid://hmgka12dhrys"]
+
+[ext_resource type="Texture2D" uid="uid://guotjrtg6kk6" path="res://icon.svg" id="1_pslij"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_anlfm"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_yfhmf"]
+
+[sub_resource type="Curve" id="Curve_cbhn2"]
+max_value = 100.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.996721, 59.0013), 154.378, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_wxqr0"]
+curve = SubResource("Curve_cbhn2")
+
+[sub_resource type="Curve" id="Curve_asi48"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.990164, 0), -2.96662, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_rdlwq"]
+curve = SubResource("Curve_asi48")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_u87nh"]
+particle_flag_disable_z = true
+angle_min = -407.7
+angle_max = 459.8
+spread = 180.0
+initial_velocity_min = 891.57
+initial_velocity_max = 1000.0
+gravity = Vector3(0, 98, 0)
+damping_min = 36.004
+damping_max = 53.473
+damping_curve = SubResource("CurveTexture_wxqr0")
+scale_curve = SubResource("CurveTexture_rdlwq")
+hue_variation_min = -0.35
+hue_variation_max = 0.31
+turbulence_noise_strength = 0.0
+turbulence_noise_scale = 0.325
 
 [node name="Node2D" type="Node2D"]
 
@@ -49,3 +87,15 @@ text = "Options (you dont have any)"
 layout_mode = 2
 text = "Exit Game
 "
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_anlfm")
+position = Vector2(302, 355)
+texture = ExtResource("1_pslij")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_yfhmf")
+position = Vector2(312, 171)
+process_material = SubResource("ParticleProcessMaterial_u87nh")
+texture = ExtResource("1_pslij")
+trail_enabled = true
