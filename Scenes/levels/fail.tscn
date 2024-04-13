@@ -1,10 +1,39 @@
-[gd_scene format=3 uid="uid://co2le5hjxt5h6"]
+[gd_scene load_steps=3 format=3 uid="uid://co2le5hjxt5h6"]
 
-[node name="Fail" type="Node2D"]
+[ext_resource type="Script" path="res://scripts/ui/fail_scene.cs" id="1_20sdp"]
+[ext_resource type="PackedScene" uid="uid://cor8upb3u2j37" path="res://Scenes/main.tscn" id="3_1u0d4"]
 
-[node name="Label" type="Label" parent="."]
-offset_left = 327.0
-offset_top = 184.0
-offset_right = 404.0
-offset_bottom = 207.0
+[node name="Fail" type="CanvasLayer"]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -39.5
+offset_top = -33.0
+offset_right = 39.5
+offset_bottom = 33.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_20sdp")
+startScene = ExtResource("3_1u0d4")
+menuScene = ExtResource("3_1u0d4")
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
 text = "You failed"
+
+[node name="try again" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Try again
+"
+
+[node name="menu" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "menu
+"
+
+[connection signal="pressed" from="VBoxContainer/try again" to="VBoxContainer" method="_on_try_again_pressed"]
+[connection signal="pressed" from="VBoxContainer/menu" to="VBoxContainer" method="_on_menu_pressed"]

@@ -6,6 +6,8 @@ public partial class player : CharacterBody2D
 	[Export] public float dashLength = 1.0f;
 	[Export] public double dashTime = 1.0;
 
+	Timer slashTimer;
+
 	private wave_manager WaveManager;
 
 	public bool isDashing = false;

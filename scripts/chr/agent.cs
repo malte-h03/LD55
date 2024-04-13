@@ -59,6 +59,17 @@ public partial class agent : RigidBody2D
 	
 	}
 
+	public void TakeDamage(int amount)
+	{
+		GD.Print("Oouth!!");
+		health -= amount;
+
+		if (health == 0)
+		{
+			Kill();
+		}
+	}
+
     public override void _Input(InputEvent @event)
     {
         if (Input.IsKeyPressed(Key.K))

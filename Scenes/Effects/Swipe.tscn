@@ -1,6 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://frywlqdkp5w6"]
+[gd_scene load_steps=12 format=3 uid="uid://beer0e1wimywf"]
 
+[ext_resource type="Script" path="res://scripts/effects/Swipe.cs" id="1_2xepc"]
 [ext_resource type="Shader" path="res://Shaders/Swipe.gdshader" id="1_4fguk"]
+[ext_resource type="Texture2D" uid="uid://guotjrtg6kk6" path="res://icon.svg" id="3_42mwl"]
 
 [sub_resource type="Gradient" id="Gradient_b7xdy"]
 offsets = PackedFloat32Array(0.0992064, 0.130952, 0.553571)
@@ -36,14 +38,44 @@ colors = PackedColorArray(0, 0, 0, 1, 0.425573, 0.425573, 0.425573, 1, 1, 1, 1, 
 gradient = SubResource("Gradient_e0v1f")
 fill_to = Vector2(1, 0.00854701)
 
-[node name="SwipeEffect" type="Node2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bp1w3"]
+size = Vector2(53, 82)
+
+[node name="SwipeEffect" type="Node2D" node_paths=PackedStringArray("slashTimer", "damageZone", "particle")]
+script = ExtResource("1_2xepc")
+slashTimer = NodePath("Timer")
+damageZone = NodePath("swipe anchor/Area2D")
+particle = NodePath("SwipeParticle")
 
 [node name="SwipeParticle" type="CPUParticles2D" parent="."]
 material = SubResource("ShaderMaterial_pun3k")
+position = Vector2(41, 0)
+rotation = 1.5708
 emitting = false
 amount = 1
 lifetime = 0.75
 one_shot = true
+local_coords = true
 texture = SubResource("GradientTexture2D_16tk6")
 gravity = Vector2(0, 0)
 color = Color(1, 1, 1, 0)
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[node name="swipe anchor" type="Node2D" parent="."]
+
+[node name="Area2D" type="Area2D" parent="swipe anchor"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="swipe anchor/Area2D"]
+position = Vector2(27.5, 0)
+shape = SubResource("RectangleShape2D_bp1w3")
+
+[node name="Sprite2D" type="Sprite2D" parent="swipe anchor"]
+position = Vector2(25, -1.13687e-13)
+rotation = 3.14159
+scale = Vector2(1.44155, -0.115736)
+texture = ExtResource("3_42mwl")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
