@@ -1,5 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://d1uccapfbtque"]
+[gd_scene load_steps=10 format=3 uid="uid://d1uccapfbtque"]
 
+[ext_resource type="Script" path="res://Scenes/Effects/Dash.cs" id="1_cve1a"]
 [ext_resource type="Shader" path="res://Scenes/Effects/Dash.gdshader" id="1_egttq"]
 
 [sub_resource type="Gradient" id="Gradient_e4o42"]
@@ -29,13 +30,24 @@ colors = PackedColorArray(0, 0, 0, 1, 0.425573, 0.425573, 0.425573, 1, 1, 1, 1, 
 gradient = SubResource("Gradient_4ad8i")
 fill_to = Vector2(1, 0.00854701)
 
-[node name="DashEffect" type="Node2D"]
+[node name="DashEffect" type="Node2D" node_paths=PackedStringArray("dashTimer", "particle")]
+script = ExtResource("1_cve1a")
+dashTimer = NodePath("Timer")
+particle = NodePath("DashParticle")
 
 [node name="DashParticle" type="CPUParticles2D" parent="."]
 material = SubResource("ShaderMaterial_7lts2")
+rotation = 1.5708
 emitting = false
 amount = 1
 one_shot = true
+local_coords = true
 texture = SubResource("GradientTexture2D_4nyk0")
 gravity = Vector2(0, 0)
 color = Color(1, 1, 1, 0)
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_dash_timer_timeout"]
