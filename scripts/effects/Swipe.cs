@@ -19,8 +19,8 @@ public partial class Swipe : Node2D
 		GlobalRotation = MathF.Atan2(directionVector.Y, directionVector.X) + Mathf.Pi;
 	}
 
-    public override void _Input(InputEvent @event)
-    {
+	public override void _Input(InputEvent @event)
+	{
 		if (Input.IsActionJustPressed("SLASH") && slashTimer.TimeLeft == 0)
 		{
 			particle.Emitting = true;
@@ -40,7 +40,7 @@ public partial class Swipe : Node2D
 
 			slashTimer.Start(slashTimer.WaitTime);
 		}
-    }
+	}
 
 	public void _on_timer_timeout()
 	{

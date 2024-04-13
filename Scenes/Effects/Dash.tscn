@@ -7,47 +7,52 @@
 offsets = PackedFloat32Array(0.52381, 0.785714, 1)
 colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_x25ek"]
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_7ayij"]
 gradient = SubResource("Gradient_e4o42")
 fill_to = Vector2(0, 1)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_jujoc"]
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_vxtxq"]
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_scjad"]
 seamless = true
 noise = SubResource("FastNoiseLite_jujoc")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7lts2"]
 shader = ExtResource("1_egttq")
-shader_parameter/noise = SubResource("NoiseTexture2D_vxtxq")
-shader_parameter/band = SubResource("GradientTexture2D_x25ek")
+shader_parameter/newRes = 60.01
+shader_parameter/noise = SubResource("NoiseTexture2D_scjad")
+shader_parameter/band = SubResource("GradientTexture2D_7ayij")
 
-[sub_resource type="Gradient" id="Gradient_4ad8i"]
+[sub_resource type="Gradient" id="Gradient_420as"]
 offsets = PackedFloat32Array(0.461832, 0.492366, 0.51145, 0.54771, 0.996183)
 colors = PackedColorArray(0, 0, 0, 1, 0.425573, 0.425573, 0.425573, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_4nyk0"]
-gradient = SubResource("Gradient_4ad8i")
+gradient = SubResource("Gradient_420as")
 fill_to = Vector2(1, 0.00854701)
 
 [node name="DashEffect" type="Node2D" node_paths=PackedStringArray("dashTimer", "particle")]
 script = ExtResource("1_cve1a")
 dashTimer = NodePath("Timer")
-particle = NodePath("DashParticle")
+particle = NodePath("DashAnchor/DashParticle")
 
-[node name="DashParticle" type="CPUParticles2D" parent="."]
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[node name="DashAnchor" type="Node2D" parent="."]
+
+[node name="DashParticle" type="CPUParticles2D" parent="DashAnchor"]
 material = SubResource("ShaderMaterial_7lts2")
+position = Vector2(-9.935, 0)
 rotation = 1.5708
 emitting = false
 amount = 1
+lifetime = 0.5
 one_shot = true
 local_coords = true
 texture = SubResource("GradientTexture2D_4nyk0")
 gravity = Vector2(0, 0)
 color = Color(1, 1, 1, 0)
-
-[node name="Timer" type="Timer" parent="."]
-one_shot = true
-autostart = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_dash_timer_timeout"]
