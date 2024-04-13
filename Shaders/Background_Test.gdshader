@@ -36,6 +36,7 @@ void fragment() {
 	vec4 noise3x = vec4(floatNoise3, floatNoise3, floatNoise3, floatNoise3);
 	
 	float multiNoise = (noise1x * noise2x * noise3x).x;
+	//maskProgress += sin(TIME);
 	float circleMask = step(circle(UV, vec2(0.5, 0.5), 0.f), maskProgress);
 	
 	COLOR = (noise1x * noise2x * noise3x) * circleMask;
