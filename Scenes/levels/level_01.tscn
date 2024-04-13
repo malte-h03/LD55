@@ -1,9 +1,19 @@
-[gd_scene format=3 uid="uid://bh0hgahs6gy6o"]
+[gd_scene load_steps=4 format=3 uid="uid://bh0hgahs6gy6o"]
+
+[ext_resource type="PackedScene" uid="uid://d3dmat0xa1y0m" path="res://Scenes/chr/player.tscn" id="1_va61m"]
+[ext_resource type="PackedScene" uid="uid://nyx8561rtbs1" path="res://Scenes/objects/portal.tscn" id="2_du7v3"]
+[ext_resource type="PackedScene" uid="uid://ggpcifpxs87r" path="res://Scenes/chr/agent.tscn" id="3_fq7g3"]
 
 [node name="Level01" type="Node2D"]
 
-[node name="Hello" type="Label" parent="."]
-offset_right = 40.0
-offset_bottom = 23.0
-text = "Hello
-"
+[node name="Player" parent="." instance=ExtResource("1_va61m")]
+position = Vector2(431, 143)
+
+[node name="Portal" parent="." instance=ExtResource("2_du7v3")]
+position = Vector2(939, 287)
+
+[node name="Agent" parent="." instance=ExtResource("3_fq7g3")]
+position = Vector2(255, 410)
+
+[node name="Agent2" parent="." instance=ExtResource("3_fq7g3")]
+position = Vector2(99, 291)

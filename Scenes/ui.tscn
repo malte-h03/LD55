@@ -6,11 +6,9 @@
 [node name="UI" type="Control"]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
 
 [node name="Menu_P" type="Control" parent="." node_paths=PackedStringArray("startButton", "optionsButton", "ExitButton")]
-layout_mode = 3
+layout_mode = 1
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -41,3 +39,4 @@ text = "Exit Game
 "
 
 [connection signal="pressed" from="Menu_P/VBoxContainer/Start game" to="Menu_P" method="_on_start_game_pressed"]
+[connection signal="pressed" from="Menu_P/VBoxContainer/Exit" to="Menu_P" method="_on_exit_pressed"]

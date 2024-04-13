@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://ggpcifpxs87r"]
+
+[ext_resource type="Texture2D" uid="uid://ck3nfg1wm18o7" path="res://2D/sprites/chr/secret_service.png" id="1_hlq30"]
+[ext_resource type="Script" path="res://scripts/chr/agent.cs" id="1_qeav3"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pcodd"]
+radius = 3.0
+height = 8.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1avj1"]
+radius = 149.405
+
+[node name="Agent" type="Node2D"]
+
+[node name="RigidBody2D" type="RigidBody2D" parent="." groups=["Enemy"]]
+gravity_scale = 0.0
+script = ExtResource("1_qeav3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+shape = SubResource("CapsuleShape2D_pcodd")
+
+[node name="Sprite2D" type="Sprite2D" parent="RigidBody2D"]
+texture_filter = 1
+texture = ExtResource("1_hlq30")
+
+[node name="Area2D" type="Area2D" parent="RigidBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D/Area2D"]
+shape = SubResource("CircleShape2D_1avj1")
+
+[connection signal="body_entered" from="RigidBody2D/Area2D" to="RigidBody2D" method="_on_area_2d_body_entered"]
