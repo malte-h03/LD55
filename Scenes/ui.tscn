@@ -1,4 +1,7 @@
-[gd_scene format=3 uid="uid://blxgm16scjxti"]
+[gd_scene load_steps=3 format=3 uid="uid://blxgm16scjxti"]
+
+[ext_resource type="Script" path="res://scripts/ui/main_menu.cs" id="1_yebkr"]
+[ext_resource type="PackedScene" uid="uid://bh0hgahs6gy6o" path="res://Scenes/levels/level_01.tscn" id="2_g5yo2"]
 
 [node name="UI" type="Control"]
 layout_mode = 3
@@ -6,11 +9,16 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Menu_P" type="Control" parent="."]
+[node name="Menu_P" type="Control" parent="." node_paths=PackedStringArray("startButton", "optionsButton", "ExitButton")]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+script = ExtResource("1_yebkr")
+startButton = NodePath("VBoxContainer/Start game")
+optionsButton = NodePath("VBoxContainer/Options")
+ExitButton = NodePath("VBoxContainer/Exit")
+startScene = ExtResource("2_g5yo2")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Menu_P"]
 layout_mode = 0
@@ -19,15 +27,17 @@ offset_top = 241.0
 offset_right = 786.0
 offset_bottom = 566.0
 
-[node name="Button" type="Button" parent="Menu_P/VBoxContainer"]
+[node name="Start game" type="Button" parent="Menu_P/VBoxContainer"]
 layout_mode = 2
 text = "Start Game"
 
-[node name="Button2" type="Button" parent="Menu_P/VBoxContainer"]
+[node name="Options" type="Button" parent="Menu_P/VBoxContainer"]
 layout_mode = 2
 text = "Options (you dont have any)"
 
-[node name="Button3" type="Button" parent="Menu_P/VBoxContainer"]
+[node name="Exit" type="Button" parent="Menu_P/VBoxContainer"]
 layout_mode = 2
 text = "Exit Game
 "
+
+[connection signal="pressed" from="Menu_P/VBoxContainer/Start game" to="Menu_P" method="_on_start_game_pressed"]
