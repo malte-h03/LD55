@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://bh0hgahs6gy6o"]
+
+[node name="Level01" type="Node2D"]
+
+[node name="Hello" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Hello
+"
