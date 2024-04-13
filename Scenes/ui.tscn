@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://blxgm16scjxti"]
+
+[node name="UI" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Menu_P" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu_P"]
+layout_mode = 0
+offset_left = 459.0
+offset_top = 241.0
+offset_right = 786.0
+offset_bottom = 566.0
+
+[node name="Button" type="Button" parent="Menu_P/VBoxContainer"]
+layout_mode = 2
+text = "Start Game"
+
+[node name="Button2" type="Button" parent="Menu_P/VBoxContainer"]
+layout_mode = 2
+text = "Options (you dont have any)"
+
+[node name="Button3" type="Button" parent="Menu_P/VBoxContainer"]
+layout_mode = 2
+text = "Exit Game
+"
