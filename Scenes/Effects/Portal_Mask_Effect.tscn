@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://bbt4n2kfoknh5"]
+
+[ext_resource type="Shader" path="res://Shaders/Background_Test.gdshader" id="1_32htd"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1cc0b"]
+shader = ExtResource("1_32htd")
+shader_parameter/maskProgress = 0.365
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_acy0s"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_dq4jj"]
+seamless = true
+noise = SubResource("FastNoiseLite_acy0s")
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Portal_Mask_Test" type="Sprite2D" parent="."]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_1cc0b")
+texture = SubResource("NoiseTexture2D_dq4jj")
