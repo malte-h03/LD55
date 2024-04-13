@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://nyx8561rtbs1"]
+
+[ext_resource type="Script" path="res://scripts/objects/portal.cs" id="1_xbqg8"]
+[ext_resource type="PackedScene" uid="uid://co2le5hjxt5h6" path="res://Scenes/levels/fail.tscn" id="2_dyun8"]
+[ext_resource type="Texture2D" uid="uid://guotjrtg6kk6" path="res://icon.svg" id="2_l22lw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hnw4j"]
+size = Vector2(90, 205)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_p36l0"]
+radius = 325.528
+
+[node name="Portal" type="Node2D"]
+script = ExtResource("1_xbqg8")
+suckingPower = 2.0
+failScene = ExtResource("2_dyun8")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 9.53674e-06)
+scale = Vector2(1, 1.60938)
+texture = ExtResource("2_l22lw")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(1, 0.5)
+shape = SubResource("RectangleShape2D_hnw4j")
+
+[node name="Area2D2" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
+position = Vector2(1, 0.5)
+shape = SubResource("CircleShape2D_p36l0")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Area2D2" to="." method="_on_circle_area_body_entered"]
+[connection signal="body_exited" from="Area2D2" to="." method="_on_circle_body_exited"]

@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://co2le5hjxt5h6"]
+
+[node name="Fail" type="Node2D"]
+
+[node name="Label" type="Label" parent="."]
+offset_left = 327.0
+offset_top = 184.0
+offset_right = 404.0
+offset_bottom = 207.0
+text = "You failed"
