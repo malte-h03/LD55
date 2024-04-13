@@ -1,3 +1,4 @@
+using System.Linq;
 using Godot;
 
 public partial class agent : RigidBody2D
@@ -41,14 +42,19 @@ public partial class agent : RigidBody2D
 
 			// 	GlobalPosition -= movementVector;
 			// }
+			if (playerRef.isDashing)
+			{
+				hand.ClearPoints();//.SetPointPosition(1, Position);
+				isGrabbing = false;
+			}
 		}
 
-		if (playerRef.isDashing && isGrabbing)
-		{
-			hand.ClearPoints();//.SetPointPosition(1, Position);
-			isGrabbing = false;
+		// if (playerRef.isDashing && isGrabbing)
+		// {
+		// 	hand.ClearPoints();//.SetPointPosition(1, Position);
+		// 	isGrabbing = false;
 
-		}
+		// }
 
 	
 	}
@@ -85,8 +91,11 @@ public partial class agent : RigidBody2D
 
 	private void grabbingBehavior()
 	{
-		hand.AddPoint(Vector2.Zero, 0);
-		hand.AddPoint(Vector2.Zero, 1);
+		if (hand.Points.Length < 2)
+		{
+			hand.AddPoint(Vector2.Zero, 0);
+			hand.AddPoint(Vector2.Zero, 1);
+		}
 		
 		grabDistance = GlobalPosition.DistanceTo(playerRef.GlobalPosition);
 		var allPortals = GetTree().GetNodesInGroup("Portal");

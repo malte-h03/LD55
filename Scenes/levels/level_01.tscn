@@ -1,25 +1,29 @@
-[gd_scene load_steps=5 format=3 uid="uid://bh0hgahs6gy6o"]
+[gd_scene load_steps=6 format=3 uid="uid://bh0hgahs6gy6o"]
 
 [ext_resource type="PackedScene" uid="uid://d3dmat0xa1y0m" path="res://Scenes/chr/player.tscn" id="1_va61m"]
 [ext_resource type="PackedScene" uid="uid://nyx8561rtbs1" path="res://Scenes/objects/portal.tscn" id="2_du7v3"]
 [ext_resource type="PackedScene" uid="uid://dr7lrbb57unf0" path="res://Scenes/HUD.tscn" id="4_g2fkt"]
 [ext_resource type="PackedScene" uid="uid://cy72sd0dak885" path="res://Scenes/objects/enemy_spawner.tscn" id="4_nktyi"]
+[ext_resource type="PackedScene" uid="uid://bgl2lx5vuqxoh" path="res://Scenes/camera.tscn" id="5_q4yad"]
 
 [node name="Level01" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_va61m")]
-position = Vector2(431, 143)
+position = Vector2(261, 133)
 
 [node name="Portal" parent="." instance=ExtResource("2_du7v3")]
 position = Vector2(939, 287)
 
 [node name="EnemySpawner" parent="." instance=ExtResource("4_nktyi")]
-position = Vector2(391, 556)
+position = Vector2(278, 224)
 
 [node name="EnemySpawner3" parent="." instance=ExtResource("4_nktyi")]
 position = Vector2(81, 63)
 
 [node name="EnemySpawner2" parent="." instance=ExtResource("4_nktyi")]
-position = Vector2(53, 407)
+position = Vector2(68, 201)
 
 [node name="Hud" parent="." groups=["HUD"] instance=ExtResource("4_g2fkt")]
+
+[node name="Camera" parent="." instance=ExtResource("5_q4yad")]
+position = Vector2(238, 135)

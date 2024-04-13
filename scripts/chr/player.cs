@@ -50,7 +50,7 @@ public partial class player : CharacterBody2D
 
 			Tween tween = GetTree().CreateTween();
 			tween.SetEase(Tween.EaseType.Out);
-			tween.TweenProperty(this, "global_position", GlobalPosition + Velocity * dashLength, dashTime).SetTrans(Tween.TransitionType.Cubic);
+			tween.TweenProperty(this, "global_position", GlobalPosition + Velocity.Normalized() * dashLength, dashTime).SetTrans(Tween.TransitionType.Cubic);
 			tween.TweenProperty(this, "isDashing", false, 0);
 		}
     }

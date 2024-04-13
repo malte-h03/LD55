@@ -8,12 +8,14 @@ radius = 3.0
 height = 8.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1avj1"]
-radius = 149.405
+radius = 55.0091
 
 [node name="Agent" type="Node2D"]
 
 [node name="RigidBody2D" type="RigidBody2D" parent="." groups=["Enemy"]]
+mass = 30.0
 gravity_scale = 0.0
+linear_damp = 2.775
 script = ExtResource("1_qeav3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]

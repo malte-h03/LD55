@@ -30,8 +30,8 @@ public partial class wave_manager : Node
 
 	public void startWave()
 	{
-		Label waveText = GetTree().GetFirstNodeInGroup("HUD").GetChild<Label>(0);
-		scoreText = GetTree().GetFirstNodeInGroup("HUD").GetChild<Label>(1);
+		Label waveText = GetTree().GetFirstNodeInGroup("HUD").GetNode<Label>("Container/wave");
+		scoreText = GetTree().GetFirstNodeInGroup("HUD").GetNode<Label>("Container/score");
 
 		waveText.Text = "Wave: " + (currentWave + 1);
 		allSpawners = GetTree().GetNodesInGroup("EnemySpawner");
@@ -65,7 +65,7 @@ public partial class wave_manager : Node
 		{
 			EndWave(currentWave);
 		}
-		scoreText.Text = "Score " + score;
+		scoreText.Text = "score " + score;
 	}
 
 	public async void EndWave(int wave)
