@@ -12,12 +12,12 @@ public partial class player : CharacterBody2D
 
 	public bool isDashing = false;
 
-    public override void _Ready()
-    {
-        WaveManager = GetTree().Root.GetNode<wave_manager>("WaveManager");
-    }
+	public override void _Ready()
+	{
+		WaveManager = GetTree().Root.GetNode<wave_manager>("WaveManager");
+	}
 
-    public override void _PhysicsProcess(double delta)
+	public override void _PhysicsProcess(double delta)
 	{
 		Vector2 velocity = Velocity;
 
@@ -44,9 +44,9 @@ public partial class player : CharacterBody2D
 		}
 	}
 
-    public override void _Input(InputEvent @event)
-    {
-        if (Input.IsActionJustPressed("DASH"))
+	public override void _Input(InputEvent @event)
+	{
+		if (Input.IsActionJustPressed("DASH"))
 		{
 			isDashing = true;
 
@@ -55,5 +55,5 @@ public partial class player : CharacterBody2D
 			tween.TweenProperty(this, "global_position", GlobalPosition + Velocity.Normalized() * dashLength, dashTime).SetTrans(Tween.TransitionType.Cubic);
 			tween.TweenProperty(this, "isDashing", false, 0);
 		}
-    }
+	}
 }

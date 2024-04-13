@@ -1,0 +1,38 @@
+[gd_scene load_steps=7 format=3 uid="uid://bi2unup6vdf7"]
+
+[ext_resource type="Shader" path="res://Shaders/EnemyDies.gdshader" id="1_7kyno"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_mw4q6"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_bneiw"]
+generate_mipmaps = false
+seamless = true
+noise = SubResource("FastNoiseLite_mw4q6")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5tb2q"]
+shader = ExtResource("1_7kyno")
+shader_parameter/enemyColor = Vector4(0, 1.245, 0, 0)
+shader_parameter/newRes = 60.01
+shader_parameter/Noise1 = SubResource("NoiseTexture2D_bneiw")
+
+[sub_resource type="Gradient" id="Gradient_pfhdx"]
+offsets = PackedFloat32Array(0, 0.665842)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_t53xj"]
+gradient = SubResource("Gradient_pfhdx")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 1)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="EnemyDiesParticle" type="CPUParticles2D" parent="."]
+material = SubResource("ShaderMaterial_5tb2q")
+rotation = 1.5708
+amount = 1
+lifetime = 0.5
+local_coords = true
+texture = SubResource("GradientTexture2D_t53xj")
+gravity = Vector2(0, 0)
+color = Color(1, 1, 1, 0)
