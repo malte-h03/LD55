@@ -46,7 +46,7 @@ fill_to = Vector2(1, 0.00854701)
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_05xnx"]
 gradient = SubResource("Gradient_f73gj")
 
-[node name="Node2D" type="Node2D"]
+[node name="SwipeEffect" type="Node2D"]
 
 [node name="Swipe" type="Sprite2D" parent="."]
 visible = false
@@ -54,7 +54,7 @@ texture_repeat = 1
 material = SubResource("ShaderMaterial_0noul")
 texture = SubResource("GradientTexture2D_4o6kc")
 
-[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+[node name="SwipeParticle" type="CPUParticles2D" parent="."]
 material = SubResource("ShaderMaterial_pun3k")
 emitting = false
 amount = 1
