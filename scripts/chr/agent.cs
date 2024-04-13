@@ -57,7 +57,7 @@ public partial class agent : RigidBody2D
 
 	public void Kill()
 	{
-		WaveManager.EnemyDie(this);
+		WaveManager.EnemyDie(this, 1000);
 		QueueFree();
 	}
 

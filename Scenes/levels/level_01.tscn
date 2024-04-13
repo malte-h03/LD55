@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://bh0hgahs6gy6o"]
+[gd_scene load_steps=5 format=3 uid="uid://bh0hgahs6gy6o"]
 
 [ext_resource type="PackedScene" uid="uid://d3dmat0xa1y0m" path="res://Scenes/chr/player.tscn" id="1_va61m"]
 [ext_resource type="PackedScene" uid="uid://nyx8561rtbs1" path="res://Scenes/objects/portal.tscn" id="2_du7v3"]
+[ext_resource type="PackedScene" uid="uid://dr7lrbb57unf0" path="res://Scenes/HUD.tscn" id="4_g2fkt"]
 [ext_resource type="PackedScene" uid="uid://cy72sd0dak885" path="res://Scenes/objects/enemy_spawner.tscn" id="4_nktyi"]
 
 [node name="Level01" type="Node2D"]
@@ -20,3 +21,5 @@ position = Vector2(81, 63)
 
 [node name="EnemySpawner2" parent="." instance=ExtResource("4_nktyi")]
 position = Vector2(53, 407)
+
+[node name="Hud" parent="." groups=["HUD"] instance=ExtResource("4_g2fkt")]
