@@ -1,25 +1,19 @@
-[gd_scene load_steps=12 format=3 uid="uid://frywlqdkp5w6"]
+[gd_scene load_steps=9 format=3 uid="uid://frywlqdkp5w6"]
 
 [ext_resource type="Shader" path="res://Shaders/Swipe.gdshader" id="1_4fguk"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_0noul"]
-shader = ExtResource("1_4fguk")
-shader_parameter/circleMaskAdjust = 0.0
-shader_parameter/circleRotationMask = -25.945
-shader_parameter/circleRotationSwipe = 1.5
-shader_parameter/circlePositionMask = Vector2(-0.5, 0.75)
-shader_parameter/circlePositionSwipe = Vector2(0.5, 1.5)
-shader_parameter/SwipeColor = null
+[sub_resource type="Gradient" id="Gradient_b7xdy"]
+offsets = PackedFloat32Array(0.0992064, 0.130952, 0.553571)
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1)
 
-[sub_resource type="Gradient" id="Gradient_ir2jb"]
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_4o6kc"]
-gradient = SubResource("Gradient_ir2jb")
-fill_from = Vector2(0, 0.0940171)
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_hqfar"]
+gradient = SubResource("Gradient_b7xdy")
+fill_from = Vector2(1, 0)
+fill_to = Vector2(0, 0)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_nssm3"]
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_vxtxq"]
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_jxdyb"]
 seamless = true
 noise = SubResource("FastNoiseLite_nssm3")
 
@@ -31,39 +25,25 @@ shader_parameter/circleRotationSwipe = 1.5
 shader_parameter/circlePositionMask = Vector2(-0.5, 0.75)
 shader_parameter/circlePositionSwipe = Vector2(0.5, 1.5)
 shader_parameter/SwipeColor = Vector4(1.725, 0.575, 1.91, 0)
-shader_parameter/noise = SubResource("NoiseTexture2D_vxtxq")
+shader_parameter/noise = SubResource("NoiseTexture2D_jxdyb")
+shader_parameter/band = SubResource("GradientTexture2D_hqfar")
 
-[sub_resource type="Gradient" id="Gradient_4ad8i"]
-offsets = PackedFloat32Array(0.461832, 0.492366, 0.51145, 0.54771, 0.996183)
+[sub_resource type="Gradient" id="Gradient_e0v1f"]
+offsets = PackedFloat32Array(0.475191, 0.492366, 0.561069, 0.776718, 0.996183)
 colors = PackedColorArray(0, 0, 0, 1, 0.425573, 0.425573, 0.425573, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_16tk6"]
-gradient = SubResource("Gradient_4ad8i")
+gradient = SubResource("Gradient_e0v1f")
 fill_to = Vector2(1, 0.00854701)
 
-[sub_resource type="Gradient" id="Gradient_f73gj"]
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_05xnx"]
-gradient = SubResource("Gradient_f73gj")
-
 [node name="SwipeEffect" type="Node2D"]
-
-[node name="Swipe" type="Sprite2D" parent="."]
-visible = false
-texture_repeat = 1
-material = SubResource("ShaderMaterial_0noul")
-texture = SubResource("GradientTexture2D_4o6kc")
 
 [node name="SwipeParticle" type="CPUParticles2D" parent="."]
 material = SubResource("ShaderMaterial_pun3k")
 emitting = false
 amount = 1
+lifetime = 0.75
 one_shot = true
 texture = SubResource("GradientTexture2D_16tk6")
 gravity = Vector2(0, 0)
 color = Color(1, 1, 1, 0)
-
-[node name="Swipe2" type="Sprite2D" parent="."]
-visible = false
-texture_filter = 2
-texture = SubResource("GradientTexture2D_05xnx")
