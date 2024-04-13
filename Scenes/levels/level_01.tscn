@@ -1,5 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://bh0hgahs6gy6o"]
+[gd_scene load_steps=7 format=3 uid="uid://bh0hgahs6gy6o"]
 
+[ext_resource type="PackedScene" uid="uid://wyn8kbojvoci" path="res://Scenes/levels/env.tscn" id="1_hv3nu"]
 [ext_resource type="PackedScene" uid="uid://d3dmat0xa1y0m" path="res://Scenes/chr/player.tscn" id="1_va61m"]
 [ext_resource type="PackedScene" uid="uid://nyx8561rtbs1" path="res://Scenes/objects/portal.tscn" id="2_du7v3"]
 [ext_resource type="PackedScene" uid="uid://dr7lrbb57unf0" path="res://Scenes/HUD.tscn" id="4_g2fkt"]
@@ -7,6 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://bgl2lx5vuqxoh" path="res://Scenes/camera.tscn" id="5_q4yad"]
 
 [node name="Level01" type="Node2D"]
+
+[node name="Env" parent="." instance=ExtResource("1_hv3nu")]
 
 [node name="Player" parent="." instance=ExtResource("1_va61m")]
 position = Vector2(261, 133)
