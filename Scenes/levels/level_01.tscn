@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bh0hgahs6gy6o"]
+[gd_scene load_steps=10 format=3 uid="uid://bh0hgahs6gy6o"]
 
 [ext_resource type="Script" path="res://scripts/game_start.cs" id="1_e7ml5"]
 [ext_resource type="PackedScene" uid="uid://wyn8kbojvoci" path="res://Scenes/levels/env.tscn" id="1_hv3nu"]
@@ -6,6 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://dr7lrbb57unf0" path="res://Scenes/HUD.tscn" id="4_g2fkt"]
 [ext_resource type="PackedScene" uid="uid://cy72sd0dak885" path="res://Scenes/objects/enemy_spawner.tscn" id="4_nktyi"]
 [ext_resource type="PackedScene" uid="uid://bgl2lx5vuqxoh" path="res://Scenes/camera.tscn" id="5_q4yad"]
+[ext_resource type="AudioStream" uid="uid://b12r7n1ojqa73" path="res://sounds/Music/DouDouDou_Intro.mp3" id="7_igkm5"]
+[ext_resource type="AudioStream" uid="uid://c1apir6ups6tq" path="res://sounds/Music/DouDouDou_Infinite.mp3" id="7_ijkum"]
+[ext_resource type="Script" path="res://scripts/music/music_mixer.cs" id="8_vxnml"]
 
 [node name="Level01" type="Node2D"]
 script = ExtResource("1_e7ml5")
@@ -80,4 +83,13 @@ polygon = PackedVector2Array(638, 0, 638, -132, 740, -133, 742, 0)
 [node name="CollisionPolygon2D9" type="CollisionPolygon2D" parent="StaticBody2D"]
 polygon = PackedVector2Array(-197, -224, 132, -226, 126, -322, -196, -320)
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="intro" type="AudioStreamPlayer" parent="." node_paths=PackedStringArray("looptrack")]
+stream = ExtResource("7_igkm5")
+autoplay = true
+script = ExtResource("8_vxnml")
+looptrack = NodePath("loop")
+
+[node name="loop" type="AudioStreamPlayer" parent="intro"]
+stream = ExtResource("7_ijkum")
+
+[connection signal="finished" from="intro" to="intro" method="_on_finished"]
