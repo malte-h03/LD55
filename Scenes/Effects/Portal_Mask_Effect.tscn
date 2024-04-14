@@ -1,7 +1,8 @@
-[gd_scene load_steps=19 format=3 uid="uid://bbt4n2kfoknh5"]
+[gd_scene load_steps=20 format=3 uid="uid://bbt4n2kfoknh5"]
 
 [ext_resource type="Shader" path="res://Shaders/Background_Test.gdshader" id="1_32htd"]
 [ext_resource type="Shader" path="res://Scenes/Effects/Portal_Suck_Effect.gdshader" id="2_i3vy2"]
+[ext_resource type="Shader" path="res://Scenes/Effects/Portal_Shader.gdshader" id="3_7ij6f"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_ni41n"]
 
@@ -65,14 +66,15 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cneqj"]
-shader = ExtResource("1_32htd")
+shader = ExtResource("3_7ij6f")
 shader_parameter/portalCenter = Vector2(0.5, 0.5)
-shader_parameter/maskProgress = 0.5
+shader_parameter/maskProgress = 0.505
 shader_parameter/swirlStrength = -1.88
 shader_parameter/portalRadius = 0.315
 shader_parameter/color1 = Vector4(0, 0.705, 0, 0)
 shader_parameter/color2 = Vector4(0, 0.01, 0, 0)
 shader_parameter/newRes = 32.275
+shader_parameter/permanent = true
 shader_parameter/noiseTexture = SubResource("NoiseTexture2D_eutaq")
 shader_parameter/suckTexture = SubResource("GradientTexture2D_jjbxl")
 
@@ -91,7 +93,6 @@ texture = SubResource("NoiseTexture2D_dq4jj")
 [node name="PortalSuckWaves" type="CPUParticles2D" parent="."]
 material = SubResource("ShaderMaterial_xnf3l")
 rotation = 1.5708
-emitting = false
 amount = 3
 lifetime = 0.5
 local_coords = true
@@ -110,6 +111,19 @@ rotation = -3.14159
 emitting = false
 amount = 1
 one_shot = true
+explosiveness = 1.0
+local_coords = true
+texture = SubResource("GradientTexture2D_fkfis")
+gravity = Vector2(0, 0)
+scale_amount_curve = SubResource("Curve_564dp")
+split_scale = true
+scale_curve_x = null
+scale_curve_y = null
+color = Color(1, 1, 1, 0)
+
+[node name="PortalSuckPermanent" type="CPUParticles2D" parent="."]
+material = SubResource("ShaderMaterial_cneqj")
+amount = 1
 explosiveness = 1.0
 local_coords = true
 texture = SubResource("GradientTexture2D_fkfis")

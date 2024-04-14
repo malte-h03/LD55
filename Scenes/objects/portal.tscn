@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://nyx8561rtbs1"]
+[gd_scene load_steps=7 format=3 uid="uid://nyx8561rtbs1"]
 
 [ext_resource type="Script" path="res://scripts/objects/portal.cs" id="1_xbqg8"]
 [ext_resource type="PackedScene" uid="uid://co2le5hjxt5h6" path="res://Scenes/levels/fail.tscn" id="2_dyun8"]
 [ext_resource type="Texture2D" uid="uid://guotjrtg6kk6" path="res://icon.svg" id="2_l22lw"]
+[ext_resource type="PackedScene" uid="uid://bbt4n2kfoknh5" path="res://Scenes/Effects/Portal_Mask_Effect.tscn" id="4_036vo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hnw4j"]
 size = Vector2(29, 48)
@@ -31,6 +32,8 @@ shape = SubResource("RectangleShape2D_hnw4j")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
 position = Vector2(1, 0.5)
 shape = SubResource("CircleShape2D_p36l0")
+
+[node name="PortalShader" parent="." instance=ExtResource("4_036vo")]
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="Area2D2" to="." method="_on_circle_area_body_entered"]
