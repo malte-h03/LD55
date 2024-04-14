@@ -47,7 +47,7 @@ fill_to = Vector2(1, 0.00854701)
 script = ExtResource("1_2xepc")
 slashTimer = NodePath("Timer")
 damageZone = NodePath("swipe anchor/Area2D")
-particle = NodePath("swipe anchor/SwipeParticle")
+particle = NodePath("swipe anchor/Area2D/CollisionShape2D/SwipeParticle")
 swoosh = NodePath("AudioStreamPlayer")
 
 [node name="Timer" type="Timer" parent="."]
@@ -62,24 +62,27 @@ autostart = true
 position = Vector2(43, 0)
 shape = SubResource("RectangleShape2D_bp1w3")
 
-[node name="Sprite2D" type="Sprite2D" parent="swipe anchor"]
-position = Vector2(45, 1.42109e-11)
-rotation = 3.14159
-scale = Vector2(2.627, -0.116)
-texture = ExtResource("3_iddby")
-
-[node name="SwipeParticle" type="CPUParticles2D" parent="swipe anchor"]
+[node name="SwipeParticle" type="CPUParticles2D" parent="swipe anchor/Area2D/CollisionShape2D"]
 material = SubResource("ShaderMaterial_pun3k")
-position = Vector2(41, 0)
+position = Vector2(45, 0)
 rotation = 1.5708
 emitting = false
 amount = 1
 lifetime = 0.5
 one_shot = true
+fixed_fps = 500
 local_coords = true
 texture = SubResource("GradientTexture2D_16tk6")
 gravity = Vector2(0, 0)
+scale_amount_min = 2.0
+scale_amount_max = 2.0
 color = Color(1, 1, 1, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="swipe anchor"]
+position = Vector2(45, 1.42109e-11)
+rotation = 3.14159
+scale = Vector2(2.627, -0.116)
+texture = ExtResource("3_iddby")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_5gana")
