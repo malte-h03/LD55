@@ -1,12 +1,16 @@
+using System;
 using System.Linq;
 using Godot;
 
 public partial class agent : RigidBody2D
 {
 	// Called when the node enters the scene tree for the first time.
-	private float health = 100.0f;
+	[Export] private float health = 100.0f;
+	[Export] private float movementSpeed = 100.0f;
+	[Export] private float grabPower = 0.2f;
+	[Export] private float maxVelocity = 20.0f;
 
-	bool isGrabbing = false;
+	public bool isGrabbing = false;
 	bool letGo = false;
 
 	float grabDistance = 0.0f;
@@ -18,6 +22,8 @@ public partial class agent : RigidBody2D
 	Line2D hand;
 	public override void _Ready()
 	{
+		playerRef = (player) GetTree().GetFirstNodeInGroup("Player");
+
 		hand = new();
 		AddChild(hand);
 
@@ -28,35 +34,29 @@ public partial class agent : RigidBody2D
 	{
 		if (isGrabbing)
 		{
-			grabbingLoop();
-			// if (!playerRef.isDashing)
-			// {
-			// 	float newDistance = playerRef.GlobalPosition.DistanceTo(GlobalPosition);
-			// 	if (playerRef.GlobalPosition.DistanceTo(GlobalPosition) > grabDistance)
-			// 	{
-			// 		Vector2 compensation = (playerRef.GlobalPosition - GlobalPosition).Normalized() * (newDistance - grabDistance);
-			// 		playerRef.GlobalPosition -= compensation;
-			// 	}
-
-			// 	hand.SetPointPosition(1, playerRef.GlobalPosition - GlobalPosition);
-
-			// 	GlobalPosition -= movementVector;
-			// }
+			
 			if (playerRef.isDashing)
 			{
 				hand.ClearPoints();//.SetPointPosition(1, Position);
 				isGrabbing = false;
 			}
+			else
+			{
+				grabbingLoop();
+			}
+		}
+		else
+		{
+			if (!playerRef.isDashing)
+			{
+				LinearVelocity += (playerRef.GlobalPosition - GlobalPosition).Normalized() * movementSpeed;
+			}
 		}
 
-		// if (playerRef.isDashing && isGrabbing)
-		// {
-		// 	hand.ClearPoints();//.SetPointPosition(1, Position);
-		// 	isGrabbing = false;
-
-		// }
-
-	
+		if(LinearVelocity.Length() > maxVelocity)
+		{
+			LinearVelocity = LinearVelocity.Normalized() * maxVelocity;
+		}
 	}
 
 	public void TakeDamage(int amount)
@@ -93,7 +93,7 @@ public partial class agent : RigidBody2D
 	{
 		if (body.IsInGroup("Player"))
 		{
-			playerRef = (player) body;
+			// playerRef = (player) body;
 			isGrabbing = true;
 
 			grabbingBehavior();
@@ -127,16 +127,36 @@ public partial class agent : RigidBody2D
 
 	private void grabbingLoop()
 	{
+		var allAgents = GetTree().GetNodesInGroup("Enemy");
+		float totalGrabs = 0;
+
+		foreach (agent enemy in allAgents)
+		{
+			if (enemy.isGrabbing)
+			{
+				totalGrabs++;
+			}
+		}
+
 		float newDistance = playerRef.GlobalPosition.DistanceTo(GlobalPosition);
 		if (playerRef.GlobalPosition.DistanceTo(GlobalPosition) > grabDistance)
 		{
 			Vector2 compensation = (playerRef.GlobalPosition - GlobalPosition).Normalized() * (newDistance - grabDistance);
-			playerRef.GlobalPosition -= compensation;
+			playerRef.Velocity -= compensation * grabPower * 100.0f;
 		}
 
-		hand.SetPointPosition(1, playerRef.GlobalPosition - GlobalPosition);
+		hand.SetPointPosition(1, (playerRef.GlobalPosition - GlobalPosition).Rotated(-GlobalRotation));
 
-		GlobalPosition -= movementVector;
+		GlobalPosition -= movementVector * MathF.Min(grabPower * totalGrabs, movementSpeed);
+		// constrain egent
+		if (playerRef.GlobalPosition.DistanceTo(GlobalPosition) > grabDistance)
+		{
+			Vector2 compensation = (playerRef.GlobalPosition - GlobalPosition).Normalized() * (newDistance - grabDistance);
+			// playerRef.Velocity -= compensation * grabPower * 10.0f;
+
+			GlobalPosition += compensation;
+		}
+		
 	}
 
 }

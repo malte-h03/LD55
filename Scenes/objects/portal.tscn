@@ -5,10 +5,10 @@
 [ext_resource type="Texture2D" uid="uid://guotjrtg6kk6" path="res://icon.svg" id="2_l22lw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hnw4j"]
-size = Vector2(90, 205)
+size = Vector2(29, 48)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_p36l0"]
-radius = 325.528
+radius = 217.166
 
 [node name="Portal" type="Node2D" groups=["Portal"]]
 script = ExtResource("1_xbqg8")
@@ -23,7 +23,7 @@ texture = ExtResource("2_l22lw")
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(1, 0.5)
+position = Vector2(0.5, -1)
 shape = SubResource("RectangleShape2D_hnw4j")
 
 [node name="Area2D2" type="Area2D" parent="."]

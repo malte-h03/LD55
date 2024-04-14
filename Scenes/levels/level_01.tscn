@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bh0hgahs6gy6o"]
+[gd_scene load_steps=8 format=3 uid="uid://bh0hgahs6gy6o"]
 
 [ext_resource type="PackedScene" uid="uid://wyn8kbojvoci" path="res://Scenes/levels/env.tscn" id="1_hv3nu"]
 [ext_resource type="PackedScene" uid="uid://d3dmat0xa1y0m" path="res://Scenes/chr/player.tscn" id="1_va61m"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dr7lrbb57unf0" path="res://Scenes/HUD.tscn" id="4_g2fkt"]
 [ext_resource type="PackedScene" uid="uid://cy72sd0dak885" path="res://Scenes/objects/enemy_spawner.tscn" id="4_nktyi"]
 [ext_resource type="PackedScene" uid="uid://bgl2lx5vuqxoh" path="res://Scenes/camera.tscn" id="5_q4yad"]
+[ext_resource type="PackedScene" uid="uid://ggpcifpxs87r" path="res://Scenes/chr/agent.tscn" id="7_v18ny"]
 
 [node name="Level01" type="Node2D"]
 
@@ -15,7 +16,7 @@
 position = Vector2(261, 133)
 
 [node name="Portal" parent="." instance=ExtResource("2_du7v3")]
-position = Vector2(939, 287)
+position = Vector2(637, 150)
 
 [node name="EnemySpawner" parent="." instance=ExtResource("4_nktyi")]
 position = Vector2(278, 224)
@@ -30,3 +31,6 @@ position = Vector2(68, 201)
 
 [node name="Camera" parent="." instance=ExtResource("5_q4yad")]
 position = Vector2(238, 135)
+
+[node name="Agent" parent="." instance=ExtResource("7_v18ny")]
+position = Vector2(122, 119)

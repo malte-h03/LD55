@@ -12,6 +12,8 @@ public partial class player : CharacterBody2D
 
 	public bool isDashing = false;
 
+	Vector2 direction;
+
 	public override void _Ready()
 	{
 		WaveManager = GetTree().Root.GetNode<wave_manager>("WaveManager");
@@ -23,7 +25,7 @@ public partial class player : CharacterBody2D
 
 		// Get the input direction and handle the movement/deceleration.
 		// As good practice, you should replace UI actions with custom gameplay actions.
-		Vector2 direction = Input.GetVector("LEFT", "RIGHT", "UP", "DOWN");
+		direction = Input.GetVector("LEFT", "RIGHT", "UP", "DOWN");
 		if (direction != Vector2.Zero)
 		{
 			velocity.X = direction.X * movementSpeed;
@@ -52,7 +54,7 @@ public partial class player : CharacterBody2D
 
 			Tween tween = GetTree().CreateTween();
 			tween.SetEase(Tween.EaseType.Out);
-			tween.TweenProperty(this, "global_position", GlobalPosition + Velocity.Normalized() * dashLength, dashTime).SetTrans(Tween.TransitionType.Cubic);
+			tween.TweenProperty(this, "global_position", GlobalPosition + direction.Normalized() * dashLength, dashTime).SetTrans(Tween.TransitionType.Cubic);
 			tween.TweenProperty(this, "isDashing", false, 0);
 		}
 	}
