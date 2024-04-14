@@ -96,11 +96,13 @@ shader = ExtResource("3_wikce")
 shader_parameter/newRes = 2.0
 shader_parameter/effectColor = null
 
-[node name="DashEffect" type="Node2D" node_paths=PackedStringArray("dashTimer", "particle", "particle2")]
+[node name="DashEffect" type="Node2D" node_paths=PackedStringArray("dashTimer", "ParticleResetTimer", "particle", "particle2", "particle3")]
 script = ExtResource("1_cve1a")
 dashTimer = NodePath("Timer")
+ParticleResetTimer = NodePath("ParticleResetTimer")
 particle = NodePath("DashAnchor/DashParticle")
 particle2 = NodePath("DashAnchor/DashParticle2")
+particle3 = NodePath("DashAnchor/DashParticle3")
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
@@ -109,7 +111,6 @@ autostart = true
 [node name="DashAnchor" type="Node2D" parent="."]
 
 [node name="DashParticle" type="CPUParticles2D" parent="DashAnchor"]
-z_index = 10
 material = SubResource("ShaderMaterial_7lts2")
 position = Vector2(-9.935, 0)
 rotation = 1.5708
@@ -124,7 +125,6 @@ gravity = Vector2(0, 0)
 color = Color(1, 1, 1, 0)
 
 [node name="DashParticle2" type="GPUParticles2D" parent="DashAnchor"]
-z_index = 10
 material = SubResource("ShaderMaterial_d5iov")
 emitting = false
 amount = 100
@@ -136,7 +136,6 @@ randomness = 1.0
 fixed_fps = 500
 
 [node name="DashParticle3" type="GPUParticles2D" parent="DashAnchor"]
-z_index = 10
 material = SubResource("ShaderMaterial_hb0o7")
 emitting = false
 amount = 100

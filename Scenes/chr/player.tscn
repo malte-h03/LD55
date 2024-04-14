@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://d3dmat0xa1y0m"]
+[gd_scene load_steps=9 format=3 uid="uid://d3dmat0xa1y0m"]
 
 [ext_resource type="Script" path="res://scripts/chr/player.cs" id="1_giowr"]
 [ext_resource type="Texture2D" uid="uid://hs8l2mj85q4m" path="res://2D/sprites/chr/Idle_spritesheet.png" id="2_o8i7c"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://beer0e1wimywf" path="res://Scenes/Effects/Swipe.tscn" id="3_vn5he"]
 [ext_resource type="Texture2D" uid="uid://cbb2hnj6puieh" path="res://2D/sprites/chr/Idle_back_spritesheet.png" id="4_7bjfd"]
 [ext_resource type="Texture2D" uid="uid://be8kqjjuptajt" path="res://2D/sprites/chr/Idle_side_spritesheet.png" id="5_qp2by"]
+[ext_resource type="PackedScene" uid="uid://d1uccapfbtque" path="res://Scenes/Effects/Dash.tscn" id="7_bguoj"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3wj7n"]
 radius = 13.0
@@ -34,3 +35,5 @@ front = ExtResource("2_o8i7c")
 side = ExtResource("5_qp2by")
 
 [node name="SwipeEffect" parent="CharacterBody2D" instance=ExtResource("3_vn5he")]
+
+[node name="DashEffect" parent="CharacterBody2D" instance=ExtResource("7_bguoj")]
