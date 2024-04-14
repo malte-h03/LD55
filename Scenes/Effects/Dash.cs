@@ -6,6 +6,8 @@ public partial class Dash : Node2D
 	player playerRef;
 	
 	[Export] Timer dashTimer;
+	[Export] Timer ParticleResetTimer;
+	
 	[Export] CpuParticles2D particle;
 	[Export] Node2D particle2;
 	[Export] Node2D particle3;
@@ -26,6 +28,8 @@ public partial class Dash : Node2D
 	{
 		Vector2 directionVector = playerRef.Velocity.Normalized();
 		GlobalRotation = MathF.Atan2(directionVector.Y, directionVector.X) + Mathf.Pi;
+		
+		//queue_free()
 	}
 
 	public override void _Input(InputEvent @event)
@@ -35,9 +39,13 @@ public partial class Dash : Node2D
 			particle.Emitting = true;
 			particleGPU.Emitting = true;
 			particleGPU2.Emitting = true;
+			//await get_tree().create_timer(1.0).timeout;
+			//particleGPU.Emitting = false;
+			//particleGPU2.Emitting = false;
+			
 			GD.Print("Dashing");
-
 			dashTimer.Start(dashTimer.WaitTime);
+			ParticleResetTimer.Start(ParticleResetTimer.WaitTime);
 		}
 	}
 	
@@ -45,5 +53,17 @@ public partial class Dash : Node2D
 	{
 		GD.Print("dash ready");
 	}
+	
+	private void _on_particle_reset_timer_timeout()
+	{
+		GD.Print("particles disabled");
+		particleGPU.Restart();
+		particleGPU2.Restart();
+		// Replace with function body.
+	}
+	
 }
+
+
+
 

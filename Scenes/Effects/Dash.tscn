@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://d1uccapfbtque"]
+[gd_scene load_steps=23 format=3 uid="uid://d1uccapfbtque"]
 
 [ext_resource type="Script" path="res://Scenes/Effects/Dash.cs" id="1_cve1a"]
 [ext_resource type="Shader" path="res://Scenes/Effects/Dash.gdshader" id="1_egttq"]
@@ -37,12 +37,7 @@ shader = ExtResource("3_wikce")
 shader_parameter/newRes = 2.0
 shader_parameter/effectColor = Vector4(1, 0, 1, 0)
 
-[sub_resource type="Curve" id="Curve_jc00n"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 2
-
 [sub_resource type="CurveXYZTexture" id="CurveXYZTexture_kf87y"]
-curve_x = SubResource("Curve_jc00n")
 
 [sub_resource type="Curve" id="Curve_utxxq"]
 _data = [Vector2(0, 0.993993), 0.0, 0.0, 0, 0, Vector2(1, 0.501386), 0.0, 0.0, 0, 0]
@@ -59,7 +54,7 @@ point_count = 2
 curve = SubResource("Curve_qu1j4")
 
 [sub_resource type="Curve" id="Curve_6rmq6"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0.505814), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="CurveTexture" id="CurveTexture_odtyi"]
@@ -67,20 +62,23 @@ curve = SubResource("Curve_6rmq6")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7hcxn"]
 particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 29.51
 inherit_velocity_ratio = 0.015
 direction = Vector3(0, 0, 0)
 spread = 0.0
-directional_velocity_min = 1.0
-directional_velocity_max = 126.18
+directional_velocity_min = 0.0
+directional_velocity_max = 0.0
 directional_velocity_curve = SubResource("CurveXYZTexture_kf87y")
-radial_velocity_max = 175.87
+radial_velocity_max = 100.0
 radial_velocity_curve = SubResource("CurveTexture_04vs8")
 gravity = Vector3(0, 0, 0)
 scale_min = 0.01
 scale_max = 0.1
 scale_curve = SubResource("CurveTexture_h0hei")
 turbulence_enabled = true
-turbulence_noise_strength = 13.04
+turbulence_noise_strength = 5.0
+turbulence_noise_speed = Vector3(1, 0, 0)
 turbulence_influence_max = 1.0
 turbulence_influence_over_life = SubResource("CurveTexture_odtyi")
 
@@ -98,9 +96,10 @@ shader = ExtResource("3_wikce")
 shader_parameter/newRes = 2.0
 shader_parameter/effectColor = null
 
-[node name="DashEffect" type="Node2D" node_paths=PackedStringArray("dashTimer", "particle", "particle2", "particle3")]
+[node name="DashEffect" type="Node2D" node_paths=PackedStringArray("dashTimer", "ParticleResetTimer", "particle", "particle2", "particle3")]
 script = ExtResource("1_cve1a")
 dashTimer = NodePath("Timer")
+ParticleResetTimer = NodePath("ParticleResetTimer")
 particle = NodePath("DashAnchor/DashParticle")
 particle2 = NodePath("DashAnchor/DashParticle2")
 particle3 = NodePath("DashAnchor/DashParticle3")
@@ -120,6 +119,7 @@ emitting = false
 amount = 1
 lifetime = 0.45
 one_shot = true
+explosiveness = 1.0
 local_coords = true
 texture = SubResource("GradientTexture2D_4nyk0")
 gravity = Vector2(0, 0)
@@ -129,30 +129,34 @@ color = Color(1, 1, 1, 0)
 z_index = 10
 material = SubResource("ShaderMaterial_d5iov")
 emitting = false
-amount = 20
+amount = 100
 process_material = SubResource("ParticleProcessMaterial_7hcxn")
 texture = SubResource("GradientTexture2D_cv0hy")
-lifetime = 0.5
 one_shot = true
-explosiveness = 0.5
+explosiveness = 1.0
 randomness = 1.0
-fixed_fps = 165
+fixed_fps = 500
 
 [node name="DashParticle3" type="GPUParticles2D" parent="DashAnchor"]
 z_index = 10
 material = SubResource("ShaderMaterial_hb0o7")
 emitting = false
-amount = 20
+amount = 100
 process_material = SubResource("ParticleProcessMaterial_7hcxn")
 texture = SubResource("GradientTexture2D_cv0hy")
-lifetime = 0.5
 one_shot = true
-explosiveness = 0.47
+explosiveness = 1.0
 randomness = 1.0
-fixed_fps = 165
+fixed_fps = 500
 
 [node name="Node2D" type="Node2D" parent="."]
 
 [node name="Node2D2" type="Node2D" parent="."]
 
+[node name="ParticleResetTimer" type="Timer" parent="."]
+wait_time = 0.09
+one_shot = true
+autostart = true
+
 [connection signal="timeout" from="Timer" to="." method="_on_dash_timer_timeout"]
+[connection signal="timeout" from="ParticleResetTimer" to="." method="_on_particle_reset_timer_timeout"]
