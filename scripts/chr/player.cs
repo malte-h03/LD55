@@ -14,6 +14,8 @@ public partial class player : CharacterBody2D
 
 	Vector2 direction;
 
+	public Vector2 dragForce;
+
 	public override void _Ready()
 	{
 		WaveManager = GetTree().Root.GetNode<wave_manager>("WaveManager");
@@ -37,13 +39,13 @@ public partial class player : CharacterBody2D
 			velocity.Y = Mathf.MoveToward(Velocity.Y, 0, movementSpeed);
 		}
 
-		Velocity = velocity;
+		Velocity = velocity + dragForce;
 		MoveAndSlide();
 
-		if(Input.IsActionJustPressed("ui_up"))
-		{
-			WaveManager.startWave();
-		}
+		// if(Input.IsActionJustPressed("ui_up"))
+		// {
+		// 	WaveManager.startWave();
+		// }
 	}
 
 	public override void _Input(InputEvent @event)

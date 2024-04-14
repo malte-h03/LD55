@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://ggpcifpxs87r"]
+[gd_scene load_steps=6 format=3 uid="uid://ggpcifpxs87r"]
 
 [ext_resource type="Texture2D" uid="uid://ck3nfg1wm18o7" path="res://2D/sprites/chr/secret_service.png" id="1_hlq30"]
 [ext_resource type="Script" path="res://scripts/chr/agent.cs" id="1_qeav3"]
@@ -7,19 +7,23 @@
 radius = 3.0
 height = 8.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_beotr"]
+radius = 55.0
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_1avj1"]
-radius = 55.0091
 
 [node name="Agent" type="Node2D"]
 
-[node name="RigidBody2D" type="RigidBody2D" parent="." groups=["Enemy"]]
+[node name="RigidBody2D" type="RigidBody2D" parent="." node_paths=PackedStringArray("buddyArea") groups=["Enemy"]]
+collision_layer = 3
+collision_mask = 3
 mass = 30.0
 gravity_scale = 0.0
 linear_damp = 2.775
 script = ExtResource("1_qeav3")
-movementSpeed = 1.0
 grabPower = 1.0
-maxVelocity = 300.0
+maxVelocity = 200.0
+buddyArea = NodePath("")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
 shape = SubResource("CapsuleShape2D_pcodd")
@@ -31,6 +35,13 @@ texture = ExtResource("1_hlq30")
 [node name="Area2D" type="Area2D" parent="RigidBody2D"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D/Area2D"]
+shape = SubResource("CircleShape2D_beotr")
+
+[node name="AnimatableBody2D" type="AnimatableBody2D" parent="RigidBody2D"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D/AnimatableBody2D"]
 shape = SubResource("CircleShape2D_1avj1")
 
 [connection signal="body_entered" from="RigidBody2D/Area2D" to="RigidBody2D" method="_on_area_2d_body_entered"]

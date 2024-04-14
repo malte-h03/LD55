@@ -10,6 +10,8 @@ public partial class agent : RigidBody2D
 	[Export] private float grabPower = 0.2f;
 	[Export] private float maxVelocity = 20.0f;
 
+	[Export] private Area2D buddyArea; // = 20.0f;
+
 	public bool isGrabbing = false;
 	bool letGo = false;
 
@@ -38,6 +40,7 @@ public partial class agent : RigidBody2D
 			if (playerRef.isDashing)
 			{
 				hand.ClearPoints();//.SetPointPosition(1, Position);
+				playerRef.dragForce = Vector2.Zero;
 				isGrabbing = false;
 			}
 			else
@@ -49,13 +52,28 @@ public partial class agent : RigidBody2D
 		{
 			if (!playerRef.isDashing)
 			{
-				LinearVelocity += (playerRef.GlobalPosition - GlobalPosition).Normalized() * movementSpeed;
+				LinearVelocity += (playerRef.GlobalPosition - GlobalPosition).Normalized() * movementSpeed * 0.1f;
 			}
 		}
+		var bodiesInArea = buddyArea.GetOverlappingBodies();
+
+		Vector2 awayForce = new();
+		float total = 0;
+		foreach( Node2D body in bodiesInArea)
+		{
+			if (body.IsInGroup("Enemy"))
+			{
+				awayForce += (body.GlobalPosition - GlobalPosition).Normalized();
+				total++;
+			}
+		}
+		awayForce /= total;
+		LinearVelocity = awayForce.Normalized() * 0.1f;
+
 
 		if(LinearVelocity.Length() > maxVelocity)
 		{
-			LinearVelocity = LinearVelocity.Normalized() * maxVelocity;
+			LinearVelocity = LinearVelocity.Normalized() * maxVelocity * 0.98f;
 		}
 	}
 
@@ -142,19 +160,19 @@ public partial class agent : RigidBody2D
 		if (playerRef.GlobalPosition.DistanceTo(GlobalPosition) > grabDistance)
 		{
 			Vector2 compensation = (playerRef.GlobalPosition - GlobalPosition).Normalized() * (newDistance - grabDistance);
-			playerRef.Velocity -= compensation * grabPower * 100.0f;
+			playerRef.dragForce = -compensation * grabPower * totalGrabs;
 		}
 
 		hand.SetPointPosition(1, (playerRef.GlobalPosition - GlobalPosition).Rotated(-GlobalRotation));
 
-		GlobalPosition -= movementVector * MathF.Min(grabPower * totalGrabs, movementSpeed);
-		// constrain egent
+		LinearVelocity = -movementVector * MathF.Min(grabPower * totalGrabs * 100, movementSpeed);
+		// constrain agent
 		if (playerRef.GlobalPosition.DistanceTo(GlobalPosition) > grabDistance)
 		{
 			Vector2 compensation = (playerRef.GlobalPosition - GlobalPosition).Normalized() * (newDistance - grabDistance);
 			// playerRef.Velocity -= compensation * grabPower * 10.0f;
 
-			GlobalPosition += compensation;
+			LinearVelocity += compensation;
 		}
 		
 	}

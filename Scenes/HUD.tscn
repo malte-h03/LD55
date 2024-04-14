@@ -1,6 +1,10 @@
-[gd_scene format=3 uid="uid://dr7lrbb57unf0"]
+[gd_scene load_steps=2 format=3 uid="uid://dr7lrbb57unf0"]
 
-[node name="Hud" type="CanvasLayer"]
+[ext_resource type="Script" path="res://scripts/ui/HUD.cs" id="1_hn4oe"]
+
+[node name="Hud" type="CanvasLayer" node_paths=PackedStringArray("waveBar") groups=["WaveSubscriber"]]
+script = ExtResource("1_hn4oe")
+waveBar = NodePath("ProgressBar")
 
 [node name="Container" type="Container" parent="."]
 anchors_preset = 15
@@ -17,3 +21,20 @@ text = "wave: "
 layout_mode = 2
 theme_override_font_sizes/font_size = 36
 text = "score: "
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+self_modulate = Color(0.823529, 0.196078, 0.733333, 1)
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -133.0
+offset_top = -21.0
+offset_right = 134.0
+offset_bottom = -13.0
+grow_horizontal = 2
+grow_vertical = 0
+max_value = 1.0
+value = 0.51
+show_percentage = false
