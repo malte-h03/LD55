@@ -1,12 +1,20 @@
 shader_type canvas_item; 
 
+
 float circle(vec2 uv, vec2 pos, float rad) {
 	float d = length(pos - uv) - rad ;
 	float t = clamp(d, 0.0, 1.0);
 	return t;
 }
 
+uniform vec2 portalCenter;
 uniform float maskProgress ;
+uniform float swirlStrength;
+uniform float portalRadius;
+varying float angle;
+uniform vec4 color1;
+uniform vec4 color2;
+uniform float newRes;
 
 void vertex() {
 	// Called for every vertex the material is visible on.
@@ -14,6 +22,24 @@ void vertex() {
 
 void fragment() {
 	// Called for every pixel the material is visible on.
+	
+	vec2 newResUniform = abs(vec2(newRes, newRes));
+	vec2 newUV2 = (floor(UV * newResUniform) / newResUniform);
+	
+	vec2 portalDist = newUV2 - portalCenter;
+    float dist = length(portalDist);
+	
+	vec2 newUV = vec2(UV.x * 1.5f - 0.25f, UV.y);
+	
+	// Calculate swirl effect
+    float swirlAmount = swirlStrength * (portalRadius - dist) / portalRadius;
+    angle = 1.;
+	angle -= TIME;
+	
+    // Apply swirl distortion
+    newUV += vec2(cos(angle + swirlAmount), sin(angle + swirlAmount)) * swirlAmount;
+	
+	vec4 portalTexture = texture(TEXTURE, newUV);
 	
 	vec2 center = UV * 0.5;
 	float radius = 0.25 * UV.y;
@@ -37,9 +63,14 @@ void fragment() {
 	
 	float multiNoise = (noise1x * noise2x * noise3x).x;
 	//maskProgress += sin(TIME);
-	float circleMask = step(circle(UV, vec2(0.5, 0.5), 0.f), maskProgress);
+	float circleMask = step(circle(vec2(newUV2.x * 1.5f - 0.25f, newUV2.y), vec2(0.5, 0.5), 0.f), maskProgress);
 	
-	COLOR = (noise1x * noise2x * noise3x) * circleMask;
+	
+	
+	vec4 portalColors = mix(color1, color2, portalTexture);
+	
+	COLOR.rgb = portalColors.rgb;
+	COLOR.a = (noise1x * noise2x * noise3x).x * circleMask;
 	
 }
 

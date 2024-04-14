@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://beer0e1wimywf"]
+[gd_scene load_steps=25 format=3 uid="uid://beer0e1wimywf"]
 
 [ext_resource type="Script" path="res://scripts/effects/Swipe.cs" id="1_2xepc"]
 [ext_resource type="Shader" path="res://Shaders/Swipe.gdshader" id="1_4fguk"]
-[ext_resource type="Texture2D" uid="uid://bh85wy3hucqe8" path="res://2D/sprites/FX/gradient.png" id="3_iddby"]
+[ext_resource type="Texture2D" uid="uid://guotjrtg6kk6" path="res://icon.svg" id="3_42mwl"]
+[ext_resource type="Shader" path="res://Scenes/Effects/SecondaryEffect.gdshader" id="4_g6yap"]
 
 [sub_resource type="Gradient" id="Gradient_b7xdy"]
 offsets = PackedFloat32Array(0.0992064, 0.130952, 0.553571)
@@ -26,7 +27,7 @@ shader_parameter/circleRotationMask = -26.0
 shader_parameter/circleRotationSwipe = 1.5
 shader_parameter/circlePositionMask = Vector2(-0.5, 0.75)
 shader_parameter/circlePositionSwipe = Vector2(0.5, 1.5)
-shader_parameter/newRes = null
+shader_parameter/newRes = 60.0
 shader_parameter/SwipeColor = Vector4(1.725, 0.575, 1.91, 0)
 shader_parameter/noise = SubResource("NoiseTexture2D_jxdyb")
 shader_parameter/band = SubResource("GradientTexture2D_hqfar")
@@ -42,6 +43,70 @@ fill_to = Vector2(1, 0.00854701)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bp1w3"]
 size = Vector2(53, 82)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6863n"]
+shader = ExtResource("4_g6yap")
+shader_parameter/newRes = 2.0
+shader_parameter/effectColor = Vector4(1, 0, 1, 0)
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_kf87y"]
+
+[sub_resource type="Curve" id="Curve_mcr0o"]
+_data = [Vector2(0, 0.993993), 0.0, 0.0, 0, 0, Vector2(1, 0.501386), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_04vs8"]
+curve = SubResource("Curve_mcr0o")
+
+[sub_resource type="Curve" id="Curve_edyf2"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.207024), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_h0hei"]
+curve = SubResource("Curve_edyf2")
+
+[sub_resource type="Curve" id="Curve_v3qcb"]
+_data = [Vector2(0, 0.505814), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_odtyi"]
+curve = SubResource("Curve_v3qcb")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ikm3w"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 29.51
+inherit_velocity_ratio = 0.015
+direction = Vector3(0, 0, 0)
+spread = 0.0
+directional_velocity_min = 0.0
+directional_velocity_max = 0.0
+directional_velocity_curve = SubResource("CurveXYZTexture_kf87y")
+radial_velocity_max = 100.0
+radial_velocity_curve = SubResource("CurveTexture_04vs8")
+gravity = Vector3(0, 0, 0)
+scale_min = 0.01
+scale_max = 0.1
+scale_curve = SubResource("CurveTexture_h0hei")
+turbulence_enabled = true
+turbulence_noise_strength = 5.0
+turbulence_noise_speed = Vector3(1, 0, 0)
+turbulence_influence_max = 1.0
+turbulence_influence_over_life = SubResource("CurveTexture_odtyi")
+
+[sub_resource type="Gradient" id="Gradient_buihh"]
+offsets = PackedFloat32Array(0, 0.663462)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_h7jbx"]
+gradient = SubResource("Gradient_buihh")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ycqfn"]
+shader = ExtResource("4_g6yap")
+shader_parameter/newRes = 2.0
+shader_parameter/effectColor = null
+
 [node name="SwipeEffect" type="Node2D" node_paths=PackedStringArray("slashTimer", "damageZone", "particle")]
 script = ExtResource("1_2xepc")
 slashTimer = NodePath("Timer")
@@ -54,7 +119,7 @@ position = Vector2(41, 0)
 rotation = 1.5708
 emitting = false
 amount = 1
-lifetime = 0.75
+lifetime = 0.2
 one_shot = true
 local_coords = true
 texture = SubResource("GradientTexture2D_16tk6")
@@ -77,6 +142,36 @@ shape = SubResource("RectangleShape2D_bp1w3")
 position = Vector2(25, -1.13687e-13)
 rotation = 3.14159
 scale = Vector2(1.44155, -0.115736)
-texture = ExtResource("3_iddby")
+texture = ExtResource("3_42mwl")
+
+[node name="ParticleResetTimer" type="Timer" parent="."]
+wait_time = 0.09
+one_shot = true
+autostart = true
+
+[node name="SwipeParticle2" type="GPUParticles2D" parent="."]
+z_index = 10
+material = SubResource("ShaderMaterial_6863n")
+emitting = false
+amount = 100
+process_material = SubResource("ParticleProcessMaterial_ikm3w")
+texture = SubResource("GradientTexture2D_h7jbx")
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+fixed_fps = 500
+
+[node name="SwipeParticle3" type="GPUParticles2D" parent="."]
+z_index = 10
+material = SubResource("ShaderMaterial_ycqfn")
+emitting = false
+amount = 100
+process_material = SubResource("ParticleProcessMaterial_ikm3w")
+texture = SubResource("GradientTexture2D_h7jbx")
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+fixed_fps = 500
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="ParticleResetTimer" to="." method="_on_particle_reset_timer_timeout"]

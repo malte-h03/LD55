@@ -1,7 +1,6 @@
-[gd_scene load_steps=20 format=3 uid="uid://bi2unup6vdf7"]
+[gd_scene load_steps=7 format=3 uid="uid://bi2unup6vdf7"]
 
 [ext_resource type="Shader" path="res://Shaders/EnemyDies.gdshader" id="1_7kyno"]
-[ext_resource type="Shader" path="res://Scenes/Effects/SecondaryEffect.gdshader" id="2_ha7c4"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_mw4q6"]
 
@@ -26,66 +25,6 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(1, 1)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_xv1xt"]
-shader = ExtResource("2_ha7c4")
-shader_parameter/newRes = 60.64
-shader_parameter/effectColor = Vector4(1, 0, 1, 0)
-
-[sub_resource type="Curve" id="Curve_oyvd1"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_63r8g"]
-curve_x = SubResource("Curve_oyvd1")
-
-[sub_resource type="Curve" id="Curve_uxnmb"]
-_data = [Vector2(0, 0.993993), 0.0, 0.0, 0, 0, Vector2(1, 0.501386), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_yf1nk"]
-curve = SubResource("Curve_uxnmb")
-
-[sub_resource type="Curve" id="Curve_22i1u"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.207024), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_4a3ir"]
-curve = SubResource("Curve_22i1u")
-
-[sub_resource type="Curve" id="Curve_77ig4"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_aqwik"]
-curve = SubResource("Curve_77ig4")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_y72cg"]
-particle_flag_disable_z = true
-direction = Vector3(0, 0, 0)
-spread = 0.0
-directional_velocity_min = 1.0
-directional_velocity_max = 237.45
-directional_velocity_curve = SubResource("CurveXYZTexture_63r8g")
-radial_velocity_max = 290.91
-radial_velocity_curve = SubResource("CurveTexture_yf1nk")
-gravity = Vector3(0, 0, 0)
-scale_min = 0.05
-scale_max = 0.25
-scale_curve = SubResource("CurveTexture_4a3ir")
-turbulence_enabled = true
-turbulence_noise_strength = 13.04
-turbulence_influence_max = 1.0
-turbulence_influence_over_life = SubResource("CurveTexture_aqwik")
-
-[sub_resource type="Gradient" id="Gradient_qmdny"]
-offsets = PackedFloat32Array(0, 0.663462)
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_nwl2y"]
-gradient = SubResource("Gradient_qmdny")
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-
 [node name="Node2D" type="Node2D"]
 
 [node name="EnemyDiesParticle" type="CPUParticles2D" parent="."]
@@ -99,13 +38,3 @@ local_coords = true
 texture = SubResource("GradientTexture2D_t53xj")
 gravity = Vector2(0, 0)
 color = Color(1, 1, 1, 0)
-
-[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
-material = SubResource("ShaderMaterial_xv1xt")
-emitting = false
-amount = 291
-process_material = SubResource("ParticleProcessMaterial_y72cg")
-texture = SubResource("GradientTexture2D_nwl2y")
-one_shot = true
-explosiveness = 1.0
-fixed_fps = 165

@@ -4,7 +4,13 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1cc0b"]
 shader = ExtResource("1_32htd")
+shader_parameter/portalCenter = Vector2(0.5, 0.5)
 shader_parameter/maskProgress = 0.365
+shader_parameter/swirlStrength = 1.195
+shader_parameter/portalRadius = 0.465
+shader_parameter/color1 = Vector4(0, 0.175, 0, 0)
+shader_parameter/color2 = Vector4(0, 1.075, 0, 0)
+shader_parameter/newRes = 60.025
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_acy0s"]
 
