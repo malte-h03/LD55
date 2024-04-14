@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://d3dmat0xa1y0m"]
+[gd_scene load_steps=6 format=3 uid="uid://d3dmat0xa1y0m"]
 
 [ext_resource type="Script" path="res://scripts/chr/player.cs" id="1_giowr"]
 [ext_resource type="Texture2D" uid="uid://guotjrtg6kk6" path="res://icon.svg" id="1_jqfa8"]
 [ext_resource type="PackedScene" uid="uid://beer0e1wimywf" path="res://Scenes/Effects/Swipe.tscn" id="3_vn5he"]
+[ext_resource type="PackedScene" uid="uid://d1uccapfbtque" path="res://Scenes/Effects/Dash.tscn" id="4_m3406"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3wj7n"]
 radius = 20.0
@@ -25,3 +26,5 @@ texture_filter = 1
 texture = ExtResource("1_jqfa8")
 
 [node name="SwipeEffect" parent="CharacterBody2D" instance=ExtResource("3_vn5he")]
+
+[node name="DashEffect" parent="CharacterBody2D" instance=ExtResource("4_m3406")]

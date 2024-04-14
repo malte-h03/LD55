@@ -7,11 +7,15 @@ public partial class Dash : Node2D
 	
 	[Export] Timer dashTimer;
 	[Export] CpuParticles2D particle;
+	[Export] Node2D particle2;
+	
+	GpuParticles2D particleGPU;
+	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 		playerRef = (player) GetTree().GetFirstNodeInGroup("Player");
-		
+		particleGPU = (GpuParticles2D) particle2;
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -26,6 +30,7 @@ public partial class Dash : Node2D
 		if (Input.IsActionJustPressed("DASH"))
 		{
 			particle.Emitting = true;
+			particleGPU.Emitting = true;
 			GD.Print("Dashing");
 
 			dashTimer.Start(dashTimer.WaitTime);
