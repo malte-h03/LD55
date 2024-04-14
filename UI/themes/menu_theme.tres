@@ -1,3 +1,25 @@
-[gd_resource type="Theme" format=3 uid="uid://ce46ki84aldeq"]
+[gd_resource type="Theme" load_steps=4 format=3 uid="uid://ce46ki84aldeq"]
+
+[ext_resource type="Texture2D" uid="uid://bseruacaqlmhf" path="res://2D/sprites/ui/buttonskin.png" id="1_brbv5"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xhnny"]
+texture = ExtResource("1_brbv5")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7ft3v"]
+texture = ExtResource("1_brbv5")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
 
 [resource]
+Button/styles/hover = SubResource("StyleBoxTexture_xhnny")
+Button/styles/normal = SubResource("StyleBoxTexture_7ft3v")
