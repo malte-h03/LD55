@@ -1,8 +1,30 @@
-[gd_scene load_steps=2 format=3 uid="uid://co2le5hjxt5h6"]
+[gd_scene load_steps=7 format=3 uid="uid://co2le5hjxt5h6"]
 
 [ext_resource type="Script" path="res://scripts/ui/fail_scene.cs" id="1_20sdp"]
+[ext_resource type="Texture2D" uid="uid://b620ih0sh36a0" path="res://2D/sprites/ui/end.png" id="1_ui6w8"]
+[ext_resource type="FontFile" uid="uid://hax1whn5o3yn" path="res://fonts/Alkhemikal.ttf" id="2_hl52f"]
+[ext_resource type="Theme" uid="uid://ce46ki84aldeq" path="res://UI/themes/menu_theme.tres" id="3_t5qkl"]
+[ext_resource type="FontFile" uid="uid://r76c8nlc81cq" path="res://fonts/windows_command_prompt.ttf" id="4_2kqf8"]
+[ext_resource type="Texture2D" uid="uid://dugxabg13g2w3" path="res://2D/sprites/ui/vignette.png" id="5_rjfu0"]
 
 [node name="Fail" type="CanvasLayer"]
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+texture_filter = 1
+offset_right = 480.0
+offset_bottom = 260.0
+texture = ExtResource("1_ui6w8")
+expand_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="."]
+self_modulate = Color(1, 1, 1, 0.294118)
+texture_filter = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_rjfu0")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 anchors_preset = 8
@@ -10,25 +32,32 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -39.5
-offset_top = -33.0
-offset_right = 39.5
-offset_bottom = 33.0
+offset_left = -230.0
+offset_top = 31.0
+offset_right = -76.0
+offset_bottom = 122.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_20sdp")
 
 [node name="Label" type="Label" parent="VBoxContainer"]
 layout_mode = 2
-text = "You failed"
+theme_override_fonts/font = ExtResource("2_hl52f")
+text = "Against all odds... 
+You have been summoned."
+horizontal_alignment = 1
 
 [node name="try again" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("3_t5qkl")
+theme_override_fonts/font = ExtResource("4_2kqf8")
 text = "Try again
 "
 
 [node name="menu" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("3_t5qkl")
+theme_override_fonts/font = ExtResource("4_2kqf8")
 text = "menu
 "
 

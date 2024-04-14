@@ -75,6 +75,11 @@ public partial class agent : RigidBody2D
 		{
 			LinearVelocity = LinearVelocity.Normalized() * maxVelocity * 0.98f;
 		}
+
+		if((playerRef.GlobalPosition - GlobalPosition).Length() > grabDistance * 3.0f)
+		{
+			isGrabbing = false;
+		}
 	}
 
 	public void TakeDamage(int amount)
