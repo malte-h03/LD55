@@ -33,8 +33,10 @@ public partial class wave_manager : Node
 		spawnLocations = new();
 	}
 
-	public void startWave()
+	public async void startWave()
 	{
+		GetTree().CallGroup("WaveSubscriber", "WaveStarted", grabbersInWave);
+
 		Label waveText = GetTree().GetFirstNodeInGroup("HUD").GetNode<Label>("Container/wave");
 		scoreText = GetTree().GetFirstNodeInGroup("HUD").GetNode<Label>("Container/score");
 
@@ -53,6 +55,8 @@ public partial class wave_manager : Node
 			GD.Print("added 1 to ", entry, " total ", spawnLocations[entry]);
 		}
 
+		await Task.Delay(1500);
+
 		int counter = 0;
 		foreach(enemy_spawner spawner in allSpawners)
 		{
@@ -64,9 +68,6 @@ public partial class wave_manager : Node
 			}
 			counter++;
 		}
-
-		GetTree().CallGroup("WaveSubscriber", "WaveStarted", grabbersInWave);
-		
 	}
 
 	public void EnemyDie(Node2D body, int getScore)

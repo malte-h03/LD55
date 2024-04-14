@@ -5,6 +5,7 @@ public partial class HUD : CanvasLayer
 {
 	// Called when the node enters the scene tree for the first time.
 	[Export] ProgressBar waveBar;
+	[Export] Label countDown;
 
 	int grabbersInWave;
 
@@ -19,6 +20,13 @@ public partial class HUD : CanvasLayer
 
 	public void WaveStarted(int grabbersTotal)
 	{
+		Tween tween = GetTree().CreateTween();
+		tween.TweenProperty(countDown, "text", "3", 0);
+		tween.Parallel().TweenProperty(countDown, "modulate", new Color(1, 1, 1, 1), 0);
+		tween.TweenProperty(countDown, "text", "2", 0.5);
+		tween.TweenProperty(countDown, "text", "1", 0.5);
+		tween.TweenProperty(countDown, "text", "GO!", 0);
+		tween.TweenProperty(countDown, "modulate", new Color(1, 1, 1, 0), 0.5);
 		grabbersInWave = grabbersTotal;
 		waveBar.Value = 1.0f;
 	}

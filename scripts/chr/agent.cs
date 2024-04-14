@@ -68,7 +68,7 @@ public partial class agent : RigidBody2D
 			}
 		}
 		awayForce /= total;
-		LinearVelocity = awayForce.Normalized() * 0.1f;
+		// LinearVelocity = awayForce.Normalized() * 0.1f;
 
 
 		if(LinearVelocity.Length() > maxVelocity)
@@ -124,6 +124,7 @@ public partial class agent : RigidBody2D
 		{
 			hand.AddPoint(Vector2.Zero, 0);
 			hand.AddPoint(Vector2.Zero, 1);
+			hand.Width = 5;
 		}
 		
 		grabDistance = GlobalPosition.DistanceTo(playerRef.GlobalPosition);

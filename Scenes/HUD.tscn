@@ -1,10 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://dr7lrbb57unf0"]
+[gd_scene load_steps=3 format=3 uid="uid://dr7lrbb57unf0"]
 
 [ext_resource type="Script" path="res://scripts/ui/HUD.cs" id="1_hn4oe"]
 
-[node name="Hud" type="CanvasLayer" node_paths=PackedStringArray("waveBar") groups=["WaveSubscriber"]]
+[sub_resource type="LabelSettings" id="LabelSettings_p5fi4"]
+font_size = 71
+
+[node name="Hud" type="CanvasLayer" node_paths=PackedStringArray("waveBar", "countDown") groups=["WaveSubscriber"]]
 script = ExtResource("1_hn4oe")
 waveBar = NodePath("ProgressBar")
+countDown = NodePath("CountDown")
 
 [node name="Container" type="Container" parent="."]
 anchors_preset = 15
@@ -38,3 +42,20 @@ grow_vertical = 0
 max_value = 1.0
 value = 0.51
 show_percentage = false
+
+[node name="CountDown" type="Label" parent="."]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "3"
+label_settings = SubResource("LabelSettings_p5fi4")
+horizontal_alignment = 1

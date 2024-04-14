@@ -79,3 +79,5 @@ polygon = PackedVector2Array(638, 0, 638, -132, 740, -133, 742, 0)
 
 [node name="CollisionPolygon2D9" type="CollisionPolygon2D" parent="StaticBody2D"]
 polygon = PackedVector2Array(-197, -224, 132, -226, 126, -322, -196, -320)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
