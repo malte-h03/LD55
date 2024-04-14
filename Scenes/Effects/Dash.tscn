@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://d1uccapfbtque"]
+[gd_scene load_steps=24 format=3 uid="uid://d1uccapfbtque"]
 
 [ext_resource type="Script" path="res://Scenes/Effects/Dash.cs" id="1_cve1a"]
 [ext_resource type="Shader" path="res://Scenes/Effects/Dash.gdshader" id="1_egttq"]
@@ -67,6 +67,7 @@ curve = SubResource("Curve_6rmq6")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7hcxn"]
 particle_flag_disable_z = true
+inherit_velocity_ratio = 0.015
 direction = Vector3(0, 0, 0)
 spread = 0.0
 directional_velocity_min = 1.0
@@ -92,11 +93,17 @@ gradient = SubResource("Gradient_buihh")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
-[node name="DashEffect" type="Node2D" node_paths=PackedStringArray("dashTimer", "particle", "particle2")]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hb0o7"]
+shader = ExtResource("3_wikce")
+shader_parameter/newRes = 2.0
+shader_parameter/effectColor = null
+
+[node name="DashEffect" type="Node2D" node_paths=PackedStringArray("dashTimer", "particle", "particle2", "particle3")]
 script = ExtResource("1_cve1a")
 dashTimer = NodePath("Timer")
 particle = NodePath("DashAnchor/DashParticle")
 particle2 = NodePath("DashAnchor/DashParticle2")
+particle3 = NodePath("DashAnchor/DashParticle3")
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
@@ -111,7 +118,7 @@ position = Vector2(-9.935, 0)
 rotation = 1.5708
 emitting = false
 amount = 1
-lifetime = 0.5
+lifetime = 0.25
 one_shot = true
 local_coords = true
 texture = SubResource("GradientTexture2D_4nyk0")
@@ -122,13 +129,30 @@ color = Color(1, 1, 1, 0)
 z_index = 10
 material = SubResource("ShaderMaterial_d5iov")
 emitting = false
+amount = 120
+process_material = SubResource("ParticleProcessMaterial_7hcxn")
+texture = SubResource("GradientTexture2D_cv0hy")
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.5
+randomness = 1.0
+fixed_fps = 165
+
+[node name="DashParticle3" type="GPUParticles2D" parent="DashAnchor"]
+z_index = 10
+material = SubResource("ShaderMaterial_hb0o7")
+emitting = false
 amount = 100
 process_material = SubResource("ParticleProcessMaterial_7hcxn")
 texture = SubResource("GradientTexture2D_cv0hy")
+lifetime = 0.5
 one_shot = true
-explosiveness = 1.0
+explosiveness = 0.47
+randomness = 1.0
 fixed_fps = 165
 
 [node name="Node2D" type="Node2D" parent="."]
+
+[node name="Node2D2" type="Node2D" parent="."]
 
 [connection signal="timeout" from="Timer" to="." method="_on_dash_timer_timeout"]
