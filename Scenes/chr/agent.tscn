@@ -1,7 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://ggpcifpxs87r"]
+[gd_scene load_steps=10 format=3 uid="uid://ggpcifpxs87r"]
 
 [ext_resource type="Texture2D" uid="uid://ck3nfg1wm18o7" path="res://2D/sprites/chr/secret_service.png" id="1_hlq30"]
 [ext_resource type="Script" path="res://scripts/chr/agent.cs" id="1_qeav3"]
+[ext_resource type="Texture2D" uid="uid://cbjbjr7l3hc1e" path="res://2D/sprites/chr/secret_service_hand_closed.png" id="3_ogi5j"]
+[ext_resource type="Texture2D" uid="uid://epu5j58nf2cm" path="res://2D/sprites/chr/secret_service_hand_open.png" id="3_uasag"]
 [ext_resource type="AudioStream" uid="uid://c56472enj4gds" path="res://sounds/Effects/EnemyDies.mp3" id="3_vm3k2"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pcodd"]
@@ -17,7 +19,7 @@ radius = 55.0
 
 [node name="Agent" type="Node2D"]
 
-[node name="RigidBody2D" type="RigidBody2D" parent="." node_paths=PackedStringArray("buddyArea", "enemyDies") groups=["Enemy"]]
+[node name="RigidBody2D" type="RigidBody2D" parent="." node_paths=PackedStringArray("buddyArea", "enemyDies", "handHand") groups=["Enemy"]]
 collision_layer = 3
 collision_mask = 3
 mass = 30.0
@@ -28,6 +30,10 @@ grabPower = 1.0
 maxVelocity = 200.0
 buddyArea = NodePath("buddyArea")
 enemyDies = NodePath("../Dies")
+handHand = NodePath("Sprite2D2")
+handOpen = ExtResource("3_uasag")
+handGrabbed = ExtResource("3_ogi5j")
+armColor = Color(0.376471, 0.682353, 0.486275, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
 shape = SubResource("CapsuleShape2D_pcodd")
@@ -52,6 +58,11 @@ shape = SubResource("CircleShape2D_1avj1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D/buddyArea"]
 shape = SubResource("CircleShape2D_2naxr")
+
+[node name="Sprite2D2" type="Sprite2D" parent="RigidBody2D"]
+texture_filter = 1
+position = Vector2(7, -7)
+texture = ExtResource("3_uasag")
 
 [node name="Dies" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_vm3k2")
