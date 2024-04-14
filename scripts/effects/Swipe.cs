@@ -6,6 +6,7 @@ public partial class Swipe : Node2D
 	[Export] Timer slashTimer;
 	[Export] Area2D damageZone;
 	[Export] CpuParticles2D particle;
+	[Export] AudioStreamPlayer swoosh;
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -23,6 +24,7 @@ public partial class Swipe : Node2D
 	{
 		if (Input.IsActionJustPressed("SLASH") && slashTimer.TimeLeft == 0)
 		{
+			swoosh.Play(0);
 			particle.Emitting = true;
 
 			var allbodies = damageZone.GetOverlappingBodies();

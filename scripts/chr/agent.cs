@@ -12,6 +12,8 @@ public partial class agent : RigidBody2D
 
 	[Export] private Area2D buddyArea; // = 20.0f;
 
+	[Export] private AudioStreamPlayer enemyDies;
+
 	public bool isGrabbing = false;
 	bool letGo = false;
 
@@ -108,6 +110,7 @@ public partial class agent : RigidBody2D
 
 	public void Kill()
 	{
+		enemyDies.Play(0);
 		WaveManager.EnemyDie(this, 1000);
 		QueueFree();
 	}

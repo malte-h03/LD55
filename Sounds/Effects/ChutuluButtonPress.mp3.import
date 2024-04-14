@@ -3,12 +3,12 @@
 importer="mp3"
 type="AudioStreamMP3"
 uid="uid://cdvm6o18w24cy"
-path="res://.godot/imported/ChutuluButtonPress.mp3-7f898c15be84f79f90e89310f393002c.mp3str"
+path="res://.godot/imported/ChutuluButtonPress.mp3-2b3bec477ff809c93ef315348f885d65.mp3str"
 
 [deps]
 
-source_file="res://Sounds/Effects/ChutuluButtonPress.mp3"
-dest_files=["res://.godot/imported/ChutuluButtonPress.mp3-7f898c15be84f79f90e89310f393002c.mp3str"]
+source_file="res://sounds/Effects/ChutuluButtonPress.mp3"
+dest_files=["res://.godot/imported/ChutuluButtonPress.mp3-2b3bec477ff809c93ef315348f885d65.mp3str"]
 
 [params]
 

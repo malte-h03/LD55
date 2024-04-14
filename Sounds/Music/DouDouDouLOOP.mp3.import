@@ -3,12 +3,12 @@
 importer="mp3"
 type="AudioStreamMP3"
 uid="uid://qs0ylwsq42v2"
-path="res://.godot/imported/DouDouDouLOOP.mp3-59a51b4d3d28ee30c873c94915f20ed6.mp3str"
+path="res://.godot/imported/DouDouDouLOOP.mp3-81687f96afc8bbf69633e2f17f1083ab.mp3str"
 
 [deps]
 
-source_file="res://Sounds/Music/DouDouDouLOOP.mp3"
-dest_files=["res://.godot/imported/DouDouDouLOOP.mp3-59a51b4d3d28ee30c873c94915f20ed6.mp3str"]
+source_file="res://sounds/Music/DouDouDouLOOP.mp3"
+dest_files=["res://.godot/imported/DouDouDouLOOP.mp3-81687f96afc8bbf69633e2f17f1083ab.mp3str"]
 
 [params]
 
