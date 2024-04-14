@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/effects/Swipe.cs" id="1_2xepc"]
 [ext_resource type="Shader" path="res://Shaders/Swipe.gdshader" id="1_4fguk"]
-[ext_resource type="Texture2D" uid="uid://guotjrtg6kk6" path="res://icon.svg" id="3_42mwl"]
+[ext_resource type="Texture2D" uid="uid://bh85wy3hucqe8" path="res://2D/sprites/FX/gradient.png" id="3_iddby"]
 
 [sub_resource type="Gradient" id="Gradient_b7xdy"]
 offsets = PackedFloat32Array(0.0992064, 0.130952, 0.553571)
@@ -26,7 +26,7 @@ shader_parameter/circleRotationMask = -26.0
 shader_parameter/circleRotationSwipe = 1.5
 shader_parameter/circlePositionMask = Vector2(-0.5, 0.75)
 shader_parameter/circlePositionSwipe = Vector2(0.5, 1.5)
-shader_parameter/newRes = 60.0
+shader_parameter/newRes = null
 shader_parameter/SwipeColor = Vector4(1.725, 0.575, 1.91, 0)
 shader_parameter/noise = SubResource("NoiseTexture2D_jxdyb")
 shader_parameter/band = SubResource("GradientTexture2D_hqfar")
@@ -54,7 +54,7 @@ position = Vector2(41, 0)
 rotation = 1.5708
 emitting = false
 amount = 1
-lifetime = 0.5
+lifetime = 0.75
 one_shot = true
 local_coords = true
 texture = SubResource("GradientTexture2D_16tk6")
@@ -77,6 +77,6 @@ shape = SubResource("RectangleShape2D_bp1w3")
 position = Vector2(25, -1.13687e-13)
 rotation = 3.14159
 scale = Vector2(1.44155, -0.115736)
-texture = ExtResource("3_42mwl")
+texture = ExtResource("3_iddby")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

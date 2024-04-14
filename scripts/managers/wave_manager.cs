@@ -6,7 +6,10 @@ public partial class wave_manager : Node
 {
 	[Export] int startGrabbers = 5;
 	[Export] float waveMultiplier = 1.5f;
-	[Export] int startPortals;
+	[Export] int startPortals = 1;
+
+	int totalPortals;// = startPortals;
+	PackedScene portal;
 
 	private int score = 0;
 
@@ -24,12 +27,16 @@ public partial class wave_manager : Node
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		totalPortals = startPortals;
+		portal = GD.Load<PackedScene>("res://Scenes/objects/portal.tscn");
 		grabbersInWave = startGrabbers;
 		spawnLocations = new();
 	}
 
-	public void startWave()
+	public async void startWave()
 	{
+		GetTree().CallGroup("WaveSubscriber", "WaveStarted", grabbersInWave);
+
 		Label waveText = GetTree().GetFirstNodeInGroup("HUD").GetNode<Label>("Container/wave");
 		scoreText = GetTree().GetFirstNodeInGroup("HUD").GetNode<Label>("Container/score");
 
@@ -48,19 +55,27 @@ public partial class wave_manager : Node
 			GD.Print("added 1 to ", entry, " total ", spawnLocations[entry]);
 		}
 
+		await Task.Delay(1500);
+
 		int counter = 0;
 		foreach(enemy_spawner spawner in allSpawners)
 		{
 			spawner.SpawnEnemy(spawnLocations[counter], 1.0f);
+			if (counter < totalPortals)
+			{
+				var portalNode = portal.Instantiate();
+				spawner.AddChild(portalNode);
+			}
 			counter++;
 		}
-		
 	}
 
 	public void EnemyDie(Node2D body, int getScore)
 	{
 		grabbersLeft--;
 		score += getScore;
+		GetTree().CallGroup("WaveSubscriber", "EnemyDie", grabbersLeft, score);
+
 		if (grabbersLeft == 0)
 		{
 			EndWave(currentWave);
@@ -72,6 +87,7 @@ public partial class wave_manager : Node
 	{
 		grabbersInWave = (int) Mathf.Floor(grabbersInWave * waveMultiplier);
 		currentWave = wave + 1;
+		totalPortals++;
 
 		GD.Print("End wave", wave, " start ", currentWave);
 		await Task.Delay((int) (waveDelay * 1000));

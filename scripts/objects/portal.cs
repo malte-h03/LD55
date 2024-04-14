@@ -39,8 +39,11 @@ public partial class portal : Node2D
 
 	public void _on_circle_area_body_entered(Node body)
 	{
-		isSucking = true;
-		playerRef = (CharacterBody2D) body;
+		if (body.IsInGroup("Player"))
+		{
+			isSucking = true;
+			playerRef = (CharacterBody2D) body;
+		}
 	}
 
 	public void _on_circle_body_exited(Node body)

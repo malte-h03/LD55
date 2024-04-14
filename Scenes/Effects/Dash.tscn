@@ -96,13 +96,11 @@ shader = ExtResource("3_wikce")
 shader_parameter/newRes = 2.0
 shader_parameter/effectColor = null
 
-[node name="DashEffect" type="Node2D" node_paths=PackedStringArray("dashTimer", "ParticleResetTimer", "particle", "particle2", "particle3")]
+[node name="DashEffect" type="Node2D" node_paths=PackedStringArray("dashTimer", "particle", "particle2")]
 script = ExtResource("1_cve1a")
 dashTimer = NodePath("Timer")
-ParticleResetTimer = NodePath("ParticleResetTimer")
 particle = NodePath("DashAnchor/DashParticle")
 particle2 = NodePath("DashAnchor/DashParticle2")
-particle3 = NodePath("DashAnchor/DashParticle3")
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
