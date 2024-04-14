@@ -1,26 +1,29 @@
-[gd_scene load_steps=7 format=3 uid="uid://blxgm16scjxti"]
+[gd_scene load_steps=8 format=3 uid="uid://blxgm16scjxti"]
 
 [ext_resource type="Script" path="res://scripts/ui/main_menu.cs" id="1_yebkr"]
-[ext_resource type="PackedScene" uid="uid://bh0hgahs6gy6o" path="res://Scenes/levels/level_01.tscn" id="2_g5yo2"]
+[ext_resource type="PackedScene" uid="uid://co86owqio2obq" path="res://Scenes/cutscene.tscn" id="2_sqg3j"]
 [ext_resource type="Texture2D" uid="uid://cmrxj02on7fcj" path="res://2D/sprites/ui/stars.png" id="3_jrc0h"]
 [ext_resource type="FontFile" uid="uid://r76c8nlc81cq" path="res://fonts/windows_command_prompt.ttf" id="3_ttt15"]
 [ext_resource type="Theme" uid="uid://ce46ki84aldeq" path="res://UI/themes/menu_theme.tres" id="4_kgxpn"]
 [ext_resource type="Texture2D" uid="uid://dugxabg13g2w3" path="res://2D/sprites/ui/vignette.png" id="6_rtybr"]
+[ext_resource type="AudioStream" uid="uid://cdvm6o18w24cy" path="res://sounds/Effects/ChutuluButtonPress.mp3" id="7_0a4em"]
 
-[node name="UI" type="Control"]
+[node name="UI" type="CanvasLayer"]
+
+[node name="Menu_P" type="Control" parent="." node_paths=PackedStringArray("startButton", "optionsButton", "ExitButton", "blackScreen", "startGammeSound")]
 layout_mode = 3
-anchors_preset = 0
-
-[node name="Menu_P" type="Control" parent="." node_paths=PackedStringArray("startButton", "optionsButton", "ExitButton")]
-layout_mode = 1
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_yebkr")
 startButton = NodePath("VBoxContainer/Start game")
 optionsButton = NodePath("VBoxContainer/Options")
 ExitButton = NodePath("VBoxContainer/Exit")
-startScene = ExtResource("2_g5yo2")
+blackScreen = NodePath("../ColorRect")
+startGammeSound = NodePath("VBoxContainer/Start game/AudioStreamPlayer")
+startScene = ExtResource("2_sqg3j")
 
 [node name="TextureRect" type="TextureRect" parent="Menu_P"]
 texture_filter = 1
@@ -117,6 +120,9 @@ theme = ExtResource("4_kgxpn")
 theme_override_fonts/font = ExtResource("3_ttt15")
 text = "Start Game"
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Menu_P/VBoxContainer/Start game"]
+stream = ExtResource("7_0a4em")
+
 [node name="Options" type="Button" parent="Menu_P/VBoxContainer"]
 texture_filter = 1
 layout_mode = 2
@@ -131,6 +137,15 @@ theme = ExtResource("4_kgxpn")
 theme_override_fonts/font = ExtResource("3_ttt15")
 text = "Exit Game
 "
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0)
 
 [connection signal="pressed" from="Menu_P/VBoxContainer/Start game" to="Menu_P" method="_on_start_game_pressed"]
 [connection signal="pressed" from="Menu_P/VBoxContainer/Exit" to="Menu_P" method="_on_exit_pressed"]

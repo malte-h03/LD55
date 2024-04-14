@@ -1,0 +1,50 @@
+[gd_scene load_steps=7 format=3 uid="uid://co86owqio2obq"]
+
+[ext_resource type="Texture2D" uid="uid://d177b5dmvvcx2" path="res://2D/sprites/ui/start.png" id="1_rqvrr"]
+[ext_resource type="Script" path="res://scripts/ui/cutscene.cs" id="1_wexn8"]
+[ext_resource type="Theme" uid="uid://ce46ki84aldeq" path="res://UI/themes/menu_theme.tres" id="2_6saik"]
+[ext_resource type="PackedScene" uid="uid://bh0hgahs6gy6o" path="res://Scenes/levels/level_01.tscn" id="2_15dgp"]
+[ext_resource type="FontFile" uid="uid://r76c8nlc81cq" path="res://fonts/windows_command_prompt.ttf" id="3_28ofe"]
+[ext_resource type="AudioStream" uid="uid://cdvm6o18w24cy" path="res://sounds/Effects/ChutuluButtonPress.mp3" id="6_w1dai"]
+
+[node name="Cutscene" type="CanvasLayer" node_paths=PackedStringArray("blackScreen", "buttonAudio")]
+script = ExtResource("1_wexn8")
+blackScreen = NodePath("ColorRect")
+gameScene = ExtResource("2_15dgp")
+buttonAudio = NodePath("Button/AudioStreamPlayer")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+texture_filter = 1
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_rqvrr")
+
+[node name="Button" type="Button" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 72.0
+offset_top = -41.0
+offset_right = 227.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("2_6saik")
+theme_override_fonts/font = ExtResource("3_28ofe")
+text = "Here we go again..."
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Button"]
+stream = ExtResource("6_w1dai")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

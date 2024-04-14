@@ -39,7 +39,7 @@ position = Vector2(-88, 486)
 [node name="Hud" parent="." groups=["HUD"] instance=ExtResource("4_g2fkt")]
 
 [node name="Camera" parent="." instance=ExtResource("5_q4yad")]
-position = Vector2(238, 135)
+position = Vector2(332, -237)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 

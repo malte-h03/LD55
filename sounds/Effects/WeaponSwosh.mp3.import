@@ -2,13 +2,13 @@
 
 importer="mp3"
 type="AudioStreamMP3"
-uid="uid://beekhft6rj0e"
-path="res://.godot/imported/WeaponSwosh.mp3-4800f986693cdd6e2fffd3585fab776c.mp3str"
+uid="uid://ilij1wdigxtb"
+path="res://.godot/imported/WeaponSwosh.mp3-3442ea544c3cfc51ede41cb324774e8b.mp3str"
 
 [deps]
 
-source_file="res://sounds/Effects/WeaponSwosh.mp3"
-dest_files=["res://.godot/imported/WeaponSwosh.mp3-4800f986693cdd6e2fffd3585fab776c.mp3str"]
+source_file="res://Sounds/Effects/WeaponSwosh.mp3"
+dest_files=["res://.godot/imported/WeaponSwosh.mp3-3442ea544c3cfc51ede41cb324774e8b.mp3str"]
 
 [params]
 

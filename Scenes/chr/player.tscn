@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://d3dmat0xa1y0m"]
 
 [ext_resource type="Script" path="res://scripts/chr/player.cs" id="1_giowr"]
-[ext_resource type="Texture2D" uid="uid://tx03env0rncx" path="res://2D/sprites/chr/Player_Char.png" id="2_iapp3"]
+[ext_resource type="Texture2D" uid="uid://hs8l2mj85q4m" path="res://2D/sprites/chr/Idle_spritesheet.png" id="2_o8i7c"]
 [ext_resource type="Script" path="res://scripts/chr/player_wobble.cs" id="3_0rg08"]
 [ext_resource type="PackedScene" uid="uid://beer0e1wimywf" path="res://Scenes/Effects/Swipe.tscn" id="3_vn5he"]
 
@@ -23,7 +23,8 @@ shape = SubResource("CapsuleShape2D_3wj7n")
 
 [node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D" node_paths=PackedStringArray("root")]
 texture_filter = 1
-texture = ExtResource("2_iapp3")
+texture = ExtResource("2_o8i7c")
+hframes = 5
 script = ExtResource("3_0rg08")
 root = NodePath("..")
 
