@@ -1,5 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://d3dmat0xa1y0m"]
-
+[gd_scene load_steps=11 format=3 uid="uid://d3dmat0xa1y0m"]
 
 [ext_resource type="Script" path="res://scripts/chr/player.cs" id="1_giowr"]
 [ext_resource type="Texture2D" uid="uid://hs8l2mj85q4m" path="res://2D/sprites/chr/Idle_spritesheet.png" id="2_o8i7c"]

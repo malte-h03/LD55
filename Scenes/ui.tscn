@@ -1,12 +1,29 @@
-[gd_scene load_steps=8 format=3 uid="uid://blxgm16scjxti"]
+[gd_scene load_steps=13 format=3 uid="uid://blxgm16scjxti"]
 
 [ext_resource type="Script" path="res://scripts/ui/main_menu.cs" id="1_yebkr"]
 [ext_resource type="PackedScene" uid="uid://co86owqio2obq" path="res://Scenes/cutscene.tscn" id="2_sqg3j"]
 [ext_resource type="Texture2D" uid="uid://cmrxj02on7fcj" path="res://2D/sprites/ui/stars.png" id="3_jrc0h"]
 [ext_resource type="FontFile" uid="uid://r76c8nlc81cq" path="res://fonts/windows_command_prompt.ttf" id="3_ttt15"]
 [ext_resource type="Theme" uid="uid://ce46ki84aldeq" path="res://UI/themes/menu_theme.tres" id="4_kgxpn"]
+[ext_resource type="Shader" path="res://Shaders/text_wiggle.gdshader" id="5_1esu3"]
 [ext_resource type="Texture2D" uid="uid://dugxabg13g2w3" path="res://2D/sprites/ui/vignette.png" id="6_rtybr"]
 [ext_resource type="AudioStream" uid="uid://cdvm6o18w24cy" path="res://sounds/Effects/ChutuluButtonPress.mp3" id="7_0a4em"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w2bc7"]
+shader = ExtResource("5_1esu3")
+shader_parameter/offset = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fw4o7"]
+shader = ExtResource("5_1esu3")
+shader_parameter/offset = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2mwhp"]
+shader = ExtResource("5_1esu3")
+shader_parameter/offset = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_x6brf"]
+shader = ExtResource("5_1esu3")
+shader_parameter/offset = 2.68
 
 [node name="UI" type="CanvasLayer"]
 
@@ -27,6 +44,7 @@ startScene = ExtResource("2_sqg3j")
 
 [node name="TextureRect" type="TextureRect" parent="Menu_P"]
 texture_filter = 1
+material = SubResource("ShaderMaterial_w2bc7")
 layout_mode = 0
 offset_left = 12.0
 offset_top = 27.0
@@ -37,6 +55,7 @@ texture = ExtResource("3_jrc0h")
 
 [node name="TextureRect2" type="TextureRect" parent="Menu_P"]
 texture_filter = 1
+material = SubResource("ShaderMaterial_w2bc7")
 layout_mode = 0
 offset_left = 440.0
 offset_top = 251.0
@@ -48,6 +67,7 @@ texture = ExtResource("3_jrc0h")
 
 [node name="TextureRect3" type="TextureRect" parent="Menu_P"]
 texture_filter = 1
+material = SubResource("ShaderMaterial_w2bc7")
 layout_mode = 0
 offset_left = 371.0
 offset_top = 23.0
@@ -59,6 +79,7 @@ texture = ExtResource("3_jrc0h")
 
 [node name="TextureRect4" type="TextureRect" parent="Menu_P"]
 texture_filter = 1
+material = SubResource("ShaderMaterial_w2bc7")
 layout_mode = 0
 offset_left = 149.0
 offset_top = 204.0
@@ -70,6 +91,7 @@ texture = ExtResource("3_jrc0h")
 
 [node name="TextureRect5" type="TextureRect" parent="Menu_P"]
 texture_filter = 1
+material = SubResource("ShaderMaterial_w2bc7")
 layout_mode = 0
 offset_left = 9.0
 offset_top = 250.0
@@ -98,8 +120,9 @@ offset_right = 402.0
 offset_bottom = 365.0
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Menu_P/VBoxContainer"]
+material = SubResource("ShaderMaterial_fw4o7")
 layout_mode = 2
-theme_override_colors/default_color = Color(0.729412, 0.74902, 0.729412, 1)
+theme_override_colors/default_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0.262745, 0.133333, 0.419608, 1)
 theme_override_constants/shadow_offset_y = 180
 theme_override_constants/shadow_outline_size = 85
@@ -115,6 +138,7 @@ fit_content = true
 
 [node name="Start game" type="Button" parent="Menu_P/VBoxContainer"]
 texture_filter = 1
+material = SubResource("ShaderMaterial_2mwhp")
 layout_mode = 2
 theme = ExtResource("4_kgxpn")
 theme_override_fonts/font = ExtResource("3_ttt15")
@@ -132,6 +156,7 @@ text = "Options (you dont have any)"
 
 [node name="Exit" type="Button" parent="Menu_P/VBoxContainer"]
 texture_filter = 1
+material = SubResource("ShaderMaterial_x6brf")
 layout_mode = 2
 theme = ExtResource("4_kgxpn")
 theme_override_fonts/font = ExtResource("3_ttt15")
