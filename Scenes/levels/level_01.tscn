@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bh0hgahs6gy6o"]
+[gd_scene load_steps=19 format=3 uid="uid://bh0hgahs6gy6o"]
 
 [ext_resource type="Script" path="res://scripts/game_start.cs" id="1_e7ml5"]
 [ext_resource type="PackedScene" uid="uid://wyn8kbojvoci" path="res://Scenes/levels/env.tscn" id="1_hv3nu"]
@@ -9,6 +9,37 @@
 [ext_resource type="AudioStream" uid="uid://b12r7n1ojqa73" path="res://sounds/Music/DouDouDou_Intro.mp3" id="7_igkm5"]
 [ext_resource type="Script" path="res://scripts/music/music_mixer.cs" id="8_vxnml"]
 [ext_resource type="AudioStream" uid="uid://qs0ylwsq42v2" path="res://sounds/Music/DouDouDouLOOP.mp3" id="9_fjldh"]
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_ka7qk"]
+polygon = PackedVector2Array(-1206, 438, -1143, 438, -1143, 340, -1210, 339, -1212, 374, -1245, 375, -1241, 594, -990, 596, -989, 568, -1208, 568)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_fs7bn"]
+polygon = PackedVector2Array(-2, 554, -2, 393, 134, 392, 134, 556)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_1rwqi"]
+polygon = PackedVector2Array(30, 294, 231, 295, 230, 194, 195, 194, 195, 165, 65, 165, 65, 192, 31, 192)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_l8iq7"]
+polygon = PackedVector2Array(636, 3, 637, -126, 739, -125, 741, 4)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_p5sou"]
+polygon = PackedVector2Array(389, 1, 389, -130, -3, -130, -3, 2)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_qol7l"]
+polygon = PackedVector2Array(-198, -221, 6, -222, 6, -319, -197, -319)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_7ljjn"]
+polygon = PackedVector2Array(743, -223, 442, -223, 444, -287, 411, -288, 412, -320, 381, -319, 380, -351, 229, -351, 229, -319, 197, -319, 199, -288, 181, -287, 181, -282, 190, -277, 188, -264, 184, -256, 167, -254, 166, -223, 124, -222, 125, -292, 164, -292, 163, -355, 195, -355, 195, -387, 227, -386, 228, -419, 383, -418, 383, -386, 414, -386, 414, -354, 446, -355, 447, -290, 739, -289)
+
+[sub_resource type="Gradient" id="Gradient_qs8sc"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.170213, 0.315603, 0.446809, 0.617021, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.492908, 0.492908, 0.492908, 1, 0.335675, 0.335675, 0.335675, 1, 0.225916, 0.225916, 0.225916, 1, 0.133759, 0.133759, 0.133759, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_vyped"]
+gradient = SubResource("Gradient_qs8sc")
+fill = 2
+fill_from = Vector2(0.491453, 0.512821)
 
 [node name="Level01" type="Node2D"]
 script = ExtResource("1_e7ml5")
@@ -91,5 +122,62 @@ looptrack = NodePath("loop")
 
 [node name="loop" type="AudioStreamPlayer" parent="intro"]
 stream = ExtResource("9_fjldh")
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+position = Vector2(402, 72)
+rotation = 0.173707
+color = Color(0.792157, 0.74902, 0.619608, 1)
+blend_mode = 1
+shadow_color = Color(0.411765, 0.258824, 0.211765, 1)
+max_distance = 3875.0
+
+[node name="LightOccluder2D8" type="LightOccluder2D" parent="."]
+position = Vector2(1020, -24)
+occluder = SubResource("OccluderPolygon2D_ka7qk")
+
+[node name="LightOccluder2D5" type="LightOccluder2D" parent="."]
+position = Vector2(510, -12)
+occluder = SubResource("OccluderPolygon2D_fs7bn")
+
+[node name="LightOccluder2D6" type="LightOccluder2D" parent="."]
+position = Vector2(-3, -6)
+occluder = SubResource("OccluderPolygon2D_1rwqi")
+
+[node name="LightOccluder2D4" type="LightOccluder2D" parent="."]
+position = Vector2(255, -6)
+occluder = SubResource("OccluderPolygon2D_1rwqi")
+
+[node name="LightOccluder2D3" type="LightOccluder2D" parent="."]
+position = Vector2(0, -4)
+occluder = SubResource("OccluderPolygon2D_l8iq7")
+
+[node name="LightOccluder2D2" type="LightOccluder2D" parent="."]
+position = Vector2(0, -2)
+occluder = SubResource("OccluderPolygon2D_p5sou")
+
+[node name="LightOccluder2D7" type="LightOccluder2D" parent="."]
+position = Vector2(0, -2)
+occluder = SubResource("OccluderPolygon2D_qol7l")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+position = Vector2(0, -1)
+occluder = SubResource("OccluderPolygon2D_7ljjn")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(-82, 462)
+scale = Vector2(2.9375, 2.875)
+color = Color(0.937255, 0.545098, 0.427451, 1)
+energy = 2.23
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_vyped")
+
+[node name="PointLight2D2" type="PointLight2D" parent="."]
+position = Vector2(117, 463)
+rotation = -0.426935
+scale = Vector2(2.9375, 2.875)
+color = Color(0.937255, 0.545098, 0.427451, 1)
+energy = 2.23
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_vyped")
 
 [connection signal="finished" from="intro" to="intro" method="_on_finished"]

@@ -23,8 +23,8 @@ public partial class HUD : CanvasLayer
 		Tween tween = GetTree().CreateTween();
 		tween.TweenProperty(countDown, "text", "3", 0);
 		tween.Parallel().TweenProperty(countDown, "modulate", new Color(1, 1, 1, 1), 0);
-		tween.TweenProperty(countDown, "text", "2", 0.5);
-		tween.TweenProperty(countDown, "text", "1", 0.5);
+		tween.TweenProperty(countDown, "text", "2", 1);
+		tween.TweenProperty(countDown, "text", "1", 1);
 		tween.TweenProperty(countDown, "text", "GO!", 0);
 		tween.TweenProperty(countDown, "modulate", new Color(1, 1, 1, 0), 0.5);
 		grabbersInWave = grabbersTotal;

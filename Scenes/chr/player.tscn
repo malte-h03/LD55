@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://d3dmat0xa1y0m"]
+[gd_scene load_steps=10 format=3 uid="uid://d3dmat0xa1y0m"]
 
 [ext_resource type="Script" path="res://scripts/chr/player.cs" id="1_giowr"]
 [ext_resource type="Texture2D" uid="uid://hs8l2mj85q4m" path="res://2D/sprites/chr/Idle_spritesheet.png" id="2_o8i7c"]
@@ -10,6 +10,17 @@
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3wj7n"]
 radius = 13.0
 height = 34.0
+
+[sub_resource type="Gradient" id="Gradient_15x1y"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.234043, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.539861, 0.539861, 0.539861, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_v61xu"]
+gradient = SubResource("Gradient_15x1y")
+fill = 1
+fill_from = Vector2(0.495726, 0.491453)
+fill_to = Vector2(0.82906, 0.141026)
 
 [node name="Player" type="Node2D"]
 
@@ -34,3 +45,9 @@ front = ExtResource("2_o8i7c")
 side = ExtResource("5_qp2by")
 
 [node name="SwipeEffect" parent="CharacterBody2D" instance=ExtResource("3_vn5he")]
+
+[node name="PointLight2D" type="PointLight2D" parent="CharacterBody2D"]
+color = Color(0.396078, 0.803922, 0.533333, 1)
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_v61xu")
+texture_scale = 6.71

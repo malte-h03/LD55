@@ -9,7 +9,7 @@ public partial class portal : Node2D
 	[Export] float suckingPower;
 	[Export] PackedScene failScene;
 
-	CharacterBody2D playerRef;
+	player playerRef;
 	bool isSucking = false;
 	public override void _Ready()
 	{
@@ -24,7 +24,7 @@ public partial class portal : Node2D
 		{
 			GD.Print("Sucking");
 			float distance = playerRef.GlobalPosition.DistanceTo(GlobalPosition);
-			playerRef.GlobalPosition -= (playerRef.GlobalPosition - GlobalPosition).Normalized() * suckingPower; // * Mathf.Max(250.0f - distance, 0.0f);
+			playerRef.dragForce -= (playerRef.GlobalPosition - GlobalPosition).Normalized() * suckingPower; // * Mathf.Max(250.0f - distance, 0.0f);
 		}
 	}
 
@@ -42,7 +42,7 @@ public partial class portal : Node2D
 		if (body.IsInGroup("Player"))
 		{
 			isSucking = true;
-			playerRef = (CharacterBody2D) body;
+			playerRef = (player) body;
 		}
 	}
 

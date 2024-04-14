@@ -73,4 +73,4 @@ SLASH={
 
 [rendering]
 
-environment/defaults/default_clear_color=Color(0.121569, 0.141176, 0.290196, 1)
+environment/defaults/default_clear_color=Color(0.0196078, 0.027451, 0.121569, 1)
