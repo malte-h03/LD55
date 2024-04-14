@@ -29,6 +29,8 @@ public partial class agent : RigidBody2D
 	wave_manager WaveManager;
 
 	Line2D hand;
+	RandomNumberGenerator rng;
+	Vector2 noiseOffset;
 	public override void _Ready()
 	{
 		playerRef = (player) GetTree().GetFirstNodeInGroup("Player");
@@ -36,7 +38,9 @@ public partial class agent : RigidBody2D
 		hand = new();
 		hand.DefaultColor = armColor;
 		AddChild(hand);
+		rng = new();
 
+		noiseOffset = new Vector2(rng.RandfRange(-2, 2), rng.RandfRange(-4, 4));
 		WaveManager = GetTree().Root.GetNode<wave_manager>("WaveManager");
 	}
 
@@ -177,7 +181,8 @@ public partial class agent : RigidBody2D
 			playerRef.dragForce = -compensation * grabPower * totalGrabs;
 		}
 
-		hand.SetPointPosition(1, (playerRef.GlobalPosition - GlobalPosition).Rotated(-GlobalRotation));
+		
+		hand.SetPointPosition(1, (playerRef.GlobalPosition - GlobalPosition + noiseOffset).Rotated(-GlobalRotation));
 
 		handHand.Position = hand.GetPointPosition(1);
 		handHand.Texture = handGrabbed;
