@@ -1,6 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://bbt4n2kfoknh5"]
+[gd_scene load_steps=19 format=3 uid="uid://bbt4n2kfoknh5"]
 
 [ext_resource type="Shader" path="res://Shaders/Background_Test.gdshader" id="1_32htd"]
+[ext_resource type="Shader" path="res://Scenes/Effects/Portal_Suck_Effect.gdshader" id="2_i3vy2"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ni41n"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_wtqov"]
+generate_mipmaps = false
+seamless = true
+noise = SubResource("FastNoiseLite_ni41n")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1cc0b"]
 shader = ExtResource("1_32htd")
@@ -11,6 +19,7 @@ shader_parameter/portalRadius = 0.465
 shader_parameter/color1 = Vector4(0, 0.175, 0, 0)
 shader_parameter/color2 = Vector4(0, 1.075, 0, 0)
 shader_parameter/newRes = 60.025
+shader_parameter/noiseTexture = SubResource("NoiseTexture2D_wtqov")
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_acy0s"]
 
@@ -18,9 +27,95 @@ shader_parameter/newRes = 60.025
 seamless = true
 noise = SubResource("FastNoiseLite_acy0s")
 
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_fbn8d"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_qxrmr"]
+seamless = true
+noise = SubResource("FastNoiseLite_fbn8d")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xnf3l"]
+shader = ExtResource("2_i3vy2")
+shader_parameter/enemyColor = Vector4(0, 1, 0, 0)
+shader_parameter/newRes = 60.0
+shader_parameter/Noise1 = SubResource("NoiseTexture2D_qxrmr")
+
+[sub_resource type="Gradient" id="Gradient_pfhdx"]
+offsets = PackedFloat32Array(0, 0.665842)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_fkfis"]
+gradient = SubResource("Gradient_pfhdx")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ba7dp"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_eutaq"]
+generate_mipmaps = false
+seamless = true
+noise = SubResource("FastNoiseLite_ba7dp")
+
+[sub_resource type="Gradient" id="Gradient_idyeg"]
+offsets = PackedFloat32Array(0.158854, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_jjbxl"]
+gradient = SubResource("Gradient_idyeg")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cneqj"]
+shader = ExtResource("1_32htd")
+shader_parameter/portalCenter = Vector2(0.5, 0.5)
+shader_parameter/maskProgress = 0.5
+shader_parameter/swirlStrength = -1.88
+shader_parameter/portalRadius = 0.315
+shader_parameter/color1 = Vector4(0, 0.705, 0, 0)
+shader_parameter/color2 = Vector4(0, 0.01, 0, 0)
+shader_parameter/newRes = 32.275
+shader_parameter/noiseTexture = SubResource("NoiseTexture2D_eutaq")
+shader_parameter/suckTexture = SubResource("GradientTexture2D_jjbxl")
+
+[sub_resource type="Curve" id="Curve_564dp"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.0613636, 1), 0.0, 0.0, 0, 0, Vector2(0.961364, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
 [node name="Node2D" type="Node2D"]
 
 [node name="Portal_Mask_Test" type="Sprite2D" parent="."]
+visible = false
 texture_repeat = 2
 material = SubResource("ShaderMaterial_1cc0b")
 texture = SubResource("NoiseTexture2D_dq4jj")
+
+[node name="PortalSuckWaves" type="CPUParticles2D" parent="."]
+material = SubResource("ShaderMaterial_xnf3l")
+rotation = 1.5708
+emitting = false
+amount = 3
+lifetime = 0.5
+local_coords = true
+texture = SubResource("GradientTexture2D_fkfis")
+gravity = Vector2(0, 0)
+scale_amount_min = 6.35
+scale_amount_max = 15.05
+split_scale = true
+scale_curve_x = null
+scale_curve_y = null
+color = Color(1, 1, 1, 0)
+
+[node name="PortalSuckParticle2" type="CPUParticles2D" parent="."]
+material = SubResource("ShaderMaterial_cneqj")
+rotation = -3.14159
+emitting = false
+amount = 1
+one_shot = true
+explosiveness = 1.0
+local_coords = true
+texture = SubResource("GradientTexture2D_fkfis")
+gravity = Vector2(0, 0)
+scale_amount_curve = SubResource("Curve_564dp")
+split_scale = true
+scale_curve_x = null
+scale_curve_y = null
+color = Color(1, 1, 1, 0)
