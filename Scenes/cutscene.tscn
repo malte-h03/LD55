@@ -20,6 +20,7 @@ offset_bottom = 40.0
 texture = ExtResource("1_rqvrr")
 
 [node name="Button" type="Button" parent="."]
+texture_filter = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0

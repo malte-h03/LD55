@@ -3,12 +3,12 @@
 importer="mp3"
 type="AudioStreamMP3"
 uid="uid://c5uy60mirl4cv"
-path="res://.godot/imported/ChutuluDash.mp3-13060716204f15e4a265ca67ac6420f0.mp3str"
+path="res://.godot/imported/ChutuluDash.mp3-abbaa6cd8df23b4effde1098e841e5ee.mp3str"
 
 [deps]
 
-source_file="res://Sounds/Effects/ChutuluDash.mp3"
-dest_files=["res://.godot/imported/ChutuluDash.mp3-13060716204f15e4a265ca67ac6420f0.mp3str"]
+source_file="res://sounds/Effects/ChutuluDash.mp3"
+dest_files=["res://.godot/imported/ChutuluDash.mp3-abbaa6cd8df23b4effde1098e841e5ee.mp3str"]
 
 [params]
 

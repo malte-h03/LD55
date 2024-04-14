@@ -14,6 +14,11 @@ public partial class agent : RigidBody2D
 
 	[Export] private AudioStreamPlayer enemyDies;
 
+	[Export] private Sprite2D handHand;
+	[Export] private Texture2D handOpen;
+	[Export] private Texture2D handGrabbed;
+	[Export] private Color armColor;
+
 	public bool isGrabbing = false;
 	bool letGo = false;
 
@@ -29,6 +34,7 @@ public partial class agent : RigidBody2D
 		playerRef = (player) GetTree().GetFirstNodeInGroup("Player");
 
 		hand = new();
+		hand.DefaultColor = armColor;
 		AddChild(hand);
 
 		WaveManager = GetTree().Root.GetNode<wave_manager>("WaveManager");
@@ -44,6 +50,8 @@ public partial class agent : RigidBody2D
 				hand.ClearPoints();//.SetPointPosition(1, Position);
 				playerRef.dragForce = Vector2.Zero;
 				isGrabbing = false;
+				handHand.Position = new Vector2(7, -7);
+				handHand.Texture = handOpen;
 			}
 			else
 			{
@@ -58,6 +66,8 @@ public partial class agent : RigidBody2D
 			}
 		}
 		var bodiesInArea = buddyArea.GetOverlappingBodies();
+
+		handHand.GlobalRotation = 0;
 
 		Vector2 awayForce = new();
 		float total = 0;
@@ -168,6 +178,9 @@ public partial class agent : RigidBody2D
 		}
 
 		hand.SetPointPosition(1, (playerRef.GlobalPosition - GlobalPosition).Rotated(-GlobalRotation));
+
+		handHand.Position = hand.GetPointPosition(1);
+		handHand.Texture = handGrabbed;
 
 		LinearVelocity = -movementVector * MathF.Min(grabPower * totalGrabs * 100, movementSpeed);
 		// constrain agent
