@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://nyx8561rtbs1"]
+[gd_scene load_steps=10 format=3 uid="uid://nyx8561rtbs1"]
 
 [ext_resource type="Script" path="res://scripts/objects/portal.cs" id="1_xbqg8"]
 [ext_resource type="PackedScene" uid="uid://co2le5hjxt5h6" path="res://Scenes/levels/fail.tscn" id="2_dyun8"]
@@ -10,6 +10,25 @@ size = Vector2(29, 48)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_p36l0"]
 radius = 217.166
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5pq8v"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 250.0
+gravity = Vector3(0, 0, 0)
+radial_accel_min = -600.0
+radial_accel_max = -400.0
+color = Color(0, 1, 0, 1)
+turbulence_enabled = true
+turbulence_noise_strength = 1.71
+
+[sub_resource type="Gradient" id="Gradient_7k1w0"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_6l4vg"]
+gradient = SubResource("Gradient_7k1w0")
+width = 2
+height = 2
 
 [node name="Portal" type="Node2D" groups=["Portal"]]
 script = ExtResource("1_xbqg8")
@@ -34,6 +53,11 @@ position = Vector2(1, 0.5)
 shape = SubResource("CircleShape2D_p36l0")
 
 [node name="PortalShader" parent="." instance=ExtResource("4_036vo")]
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="PortalShader"]
+amount = 200
+process_material = SubResource("ParticleProcessMaterial_5pq8v")
+texture = SubResource("GradientTexture2D_6l4vg")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="Area2D2" to="." method="_on_circle_area_body_entered"]
