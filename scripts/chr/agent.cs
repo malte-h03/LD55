@@ -39,7 +39,7 @@ public partial class agent : RigidBody2D
 		if (isGrabbing)
 		{
 			
-			if (playerRef.isDashing)
+			if (playerRef.isDashing || (playerRef.GlobalPosition - GlobalPosition).Length() > grabDistance * 3.0f)
 			{
 				hand.ClearPoints();//.SetPointPosition(1, Position);
 				playerRef.dragForce = Vector2.Zero;
@@ -76,11 +76,6 @@ public partial class agent : RigidBody2D
 		if(LinearVelocity.Length() > maxVelocity)
 		{
 			LinearVelocity = LinearVelocity.Normalized() * maxVelocity * 0.98f;
-		}
-
-		if((playerRef.GlobalPosition - GlobalPosition).Length() > grabDistance * 3.0f)
-		{
-			isGrabbing = false;
 		}
 	}
 

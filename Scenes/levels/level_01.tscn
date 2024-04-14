@@ -7,8 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://cy72sd0dak885" path="res://Scenes/objects/enemy_spawner.tscn" id="4_nktyi"]
 [ext_resource type="PackedScene" uid="uid://bgl2lx5vuqxoh" path="res://Scenes/camera.tscn" id="5_q4yad"]
 [ext_resource type="AudioStream" uid="uid://b12r7n1ojqa73" path="res://sounds/Music/DouDouDou_Intro.mp3" id="7_igkm5"]
-[ext_resource type="AudioStream" uid="uid://c1apir6ups6tq" path="res://sounds/Music/DouDouDou_Infinite.mp3" id="7_ijkum"]
 [ext_resource type="Script" path="res://scripts/music/music_mixer.cs" id="8_vxnml"]
+[ext_resource type="AudioStream" uid="uid://qs0ylwsq42v2" path="res://sounds/Music/DouDouDouLOOP.mp3" id="9_fjldh"]
 
 [node name="Level01" type="Node2D"]
 script = ExtResource("1_e7ml5")
@@ -90,6 +90,6 @@ script = ExtResource("8_vxnml")
 looptrack = NodePath("loop")
 
 [node name="loop" type="AudioStreamPlayer" parent="intro"]
-stream = ExtResource("7_ijkum")
+stream = ExtResource("9_fjldh")
 
 [connection signal="finished" from="intro" to="intro" method="_on_finished"]
