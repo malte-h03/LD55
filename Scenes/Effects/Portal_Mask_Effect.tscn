@@ -37,7 +37,7 @@ noise = SubResource("FastNoiseLite_fbn8d")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xnf3l"]
 shader = ExtResource("2_i3vy2")
 shader_parameter/enemyColor = Vector4(0, 1, 0, 0)
-shader_parameter/newRes = 60.0
+shader_parameter/newRes = 120.0
 shader_parameter/Noise1 = SubResource("NoiseTexture2D_qxrmr")
 
 [sub_resource type="Gradient" id="Gradient_pfhdx"]
@@ -73,7 +73,7 @@ shader_parameter/swirlStrength = -1.88
 shader_parameter/portalRadius = 0.315
 shader_parameter/color1 = Vector4(0, 0.705, 0, 0)
 shader_parameter/color2 = Vector4(0, 0.01, 0, 0)
-shader_parameter/newRes = 32.275
+shader_parameter/newRes = 30.0
 shader_parameter/permanent = true
 shader_parameter/noiseTexture = SubResource("NoiseTexture2D_eutaq")
 shader_parameter/suckTexture = SubResource("GradientTexture2D_jjbxl")
