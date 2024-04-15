@@ -13,7 +13,7 @@ config_version=5
 config/name="LD55"
 run/main_scene="res://Scenes/main.tscn"
 config/features=PackedStringArray("4.2", "C#", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="res://2D/sprites/icon.png"
 
 [autoload]
 
@@ -24,6 +24,7 @@ WaveManager="*res://scripts/managers/wave_manager.cs"
 
 window/size/viewport_width=480
 window/size/viewport_height=270
+window/size/mode=2
 window/size/always_on_top=true
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"

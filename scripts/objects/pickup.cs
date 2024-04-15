@@ -13,6 +13,7 @@ public partial class pickup : Node2D
 	[Export] Sprite2D BuffIcon;
 	[Export] CollisionShape2D BuffArea;
 	[Export] Light2D BuffLight;
+	[Export] AudioStreamPlayer BuffSound;
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -56,6 +57,8 @@ public partial class pickup : Node2D
 			}
 
 		BuffArea.Disabled = true;
+		BuffSound.Play(0);
+
 		Tween tween = GetTree().CreateTween();
 		tween.TweenProperty(BuffText, "modulate", new Color(1, 1, 1, 1), 0);
 		tween.TweenProperty(BuffText, "modulate", new Color(1, 1, 1, 0), 1);
@@ -63,7 +66,7 @@ public partial class pickup : Node2D
 		tween.Parallel().TweenProperty(BuffIcon, "modulate", new Color(1, 1, 1, 0), 1);
 		tween.Parallel().TweenProperty(BuffLight, "energy", 0, 1);
 		// tween.TweenCallback(Callable.From(BuffText.QueueFree));
-		await Task.Delay(1000);
+		await Task.Delay(2000);
 		QueueFree();
 		}
 	}

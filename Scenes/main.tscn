@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cor8upb3u2j37"]
 
 [ext_resource type="PackedScene" uid="uid://blxgm16scjxti" path="res://Scenes/ui.tscn" id="1_y8knq"]
-[ext_resource type="AudioStream" uid="uid://ck8d51bhdt8f0" path="res://Sounds/Music/ChutuluMenu.mp3" id="2_7ms2r"]
+[ext_resource type="AudioStream" uid="uid://ck8d51bhdt8f0" path="res://sounds/Music/ChutuluMenu.mp3" id="2_7ms2r"]
 
 [node name="Main" type="Node2D"]
 

@@ -3,12 +3,12 @@
 importer="mp3"
 type="AudioStreamMP3"
 uid="uid://ck8d51bhdt8f0"
-path="res://.godot/imported/ChutuluMenu.mp3-2774dce2d3fa0324378386d673ec176c.mp3str"
+path="res://.godot/imported/ChutuluMenu.mp3-9f0f2fa7de254296595edd2e875aae34.mp3str"
 
 [deps]
 
-source_file="res://Sounds/Music/ChutuluMenu.mp3"
-dest_files=["res://.godot/imported/ChutuluMenu.mp3-2774dce2d3fa0324378386d673ec176c.mp3str"]
+source_file="res://sounds/Music/ChutuluMenu.mp3"
+dest_files=["res://.godot/imported/ChutuluMenu.mp3-9f0f2fa7de254296595edd2e875aae34.mp3str"]
 
 [params]
 

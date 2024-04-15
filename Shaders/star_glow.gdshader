@@ -1,4 +1,5 @@
 shader_type canvas_item;
+render_mode unshaded;
 
 varying vec4 vertexWS;
 
@@ -14,7 +15,7 @@ void fragment() {
 	float mask = step(0.5, lum);
 	mask *= 10.0;
 	mask += 1.0;
-	COLOR = tex * mask;
+	COLOR = tex * mask * 0.3f;
 	// Called for every pixel the material is visible on.
 }
 

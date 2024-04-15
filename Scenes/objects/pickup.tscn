@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://cybhub2h7b3kp"]
+[gd_scene load_steps=11 format=3 uid="uid://cybhub2h7b3kp"]
 
 [ext_resource type="Script" path="res://scripts/objects/pickup.cs" id="1_tijbp"]
 [ext_resource type="Texture2D" uid="uid://jfy67x53katq" path="res://2D/sprites/pickup.png" id="2_u73k1"]
 [ext_resource type="FontFile" uid="uid://r76c8nlc81cq" path="res://fonts/windows_command_prompt.ttf" id="3_5cmdx"]
+[ext_resource type="AudioStream" uid="uid://du26ornd0tmk1" path="res://sounds/Effects/1_up.ogg" id="4_epu4e"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_f1wgd"]
 radius = 26.3059
@@ -32,11 +33,13 @@ gravity = Vector3(0, -40, 0)
 scale_curve = SubResource("CurveTexture_8e0bx")
 turbulence_enabled = true
 
-[node name="Pickup" type="Node2D" node_paths=PackedStringArray("BuffText", "BuffIcon", "BuffArea")]
+[node name="Pickup" type="Node2D" node_paths=PackedStringArray("BuffText", "BuffIcon", "BuffArea", "BuffLight", "BuffSound")]
 script = ExtResource("1_tijbp")
 BuffText = NodePath("Label")
 BuffIcon = NodePath("Sprite2D")
 BuffArea = NodePath("Area2D/CollisionShape2D")
+BuffLight = NodePath("PointLight2D")
+BuffSound = NodePath("chime")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -67,5 +70,9 @@ vertical_alignment = 2
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 process_material = SubResource("ParticleProcessMaterial_1vy4i")
+
+[node name="chime" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_epu4e")
+volume_db = -15.279
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
