@@ -3,11 +3,12 @@ using System;
 
 public partial class player_wobble : Sprite2D
 {
-	[Export] CharacterBody2D root;
+	[Export] player root;
 
 	[Export] Texture2D back;
 	[Export] Texture2D front;
 	[Export] Texture2D side;
+	[Export] Texture2D slash;
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -41,6 +42,11 @@ public partial class player_wobble : Sprite2D
 			Scale = Vector2.One;
 		}
 
+		if (root.isSlashing)
+		{
+			Texture = slash;
+		}
+
 
 		float isPlayerMoving = Mathf.Sign(root.Velocity.Length());
 		Rotation = (float) Mathf.Sin(time) * 0.3f * isPlayerMoving;
@@ -48,11 +54,12 @@ public partial class player_wobble : Sprite2D
 		Position = new Vector2(0.0f, (float) Mathf.Abs(Mathf.Sin(time))) * 2.0f * isPlayerMoving;
 		
 		
-		if(root.Velocity.Length() < 0.1f)
+		if(root.Velocity.Length() < 0.1f || root.isSlashing)
 		{
-			Frame = (int) Mathf.Floor((float) realtime * 4.0f) % (Hframes);
+			Frame = (int) Mathf.Floor((float) realtime * 6.0f) % (Hframes);
 		}
 
+		
 		time += delta * root.Velocity.Length() * 0.1f;
 		realtime += Mathf.Min(delta, 1.0);
 	}

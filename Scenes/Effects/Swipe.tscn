@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/effects/Swipe.cs" id="1_2xepc"]
 [ext_resource type="Shader" path="res://Shaders/Swipe.gdshader" id="1_4fguk"]
 [ext_resource type="Texture2D" uid="uid://bh85wy3hucqe8" path="res://2D/sprites/FX/gradient.png" id="3_iddby"]
-[ext_resource type="AudioStream" uid="uid://ilij1wdigxtb" path="res://Sounds/Effects/WeaponSwosh.mp3" id="4_5gana"]
+[ext_resource type="AudioStream" uid="uid://ilij1wdigxtb" path="res://sounds/Effects/WeaponSwosh.mp3" id="4_5gana"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bp1w3"]
 size = Vector2(84, 82)

@@ -54,12 +54,13 @@ color = Color(0, 0, 0, 1)
 
 [node name="AudoStreamMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_qslag")
+volume_db = -14.263
 autoplay = true
 
 [node name="AudioStreamSpeech" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(312, 229)
 stream = ExtResource("7_kuf3o")
-volume_db = 24.0
+volume_db = 6.171
 autoplay = true
 attenuation = 0.683022
 panning_strength = 0.0

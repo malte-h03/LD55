@@ -8,9 +8,13 @@ public partial class Swipe : Node2D
 	[Export] CpuParticles2D particle;
 	[Export] GpuParticles2D particle2;
 	[Export] AudioStreamPlayer swoosh;
+
+
+	player PlayerRef;
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		PlayerRef = (player) GetTree().GetFirstNodeInGroup("Player");
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -28,6 +32,8 @@ public partial class Swipe : Node2D
 			swoosh.Play(0);
 			particle.Emitting = true;
 			particle2.Emitting = true;
+
+			PlayerRef.isSlashing = true;
 
 			var allbodies = damageZone.GetOverlappingBodies();
 			GD.Print("Slashing");
@@ -48,6 +54,7 @@ public partial class Swipe : Node2D
 
 	public void _on_timer_timeout()
 	{
+		PlayerRef.isSlashing = false;
 		GD.Print("slash ready");
 	}
 }

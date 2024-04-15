@@ -14,6 +14,7 @@ public partial class player : CharacterBody2D
 	private wave_manager WaveManager;
 
 	public bool isDashing = false;
+	public bool isSlashing = false;
 
 	Vector2 direction;
 
