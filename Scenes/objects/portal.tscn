@@ -1,7 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://nyx8561rtbs1"]
+[gd_scene load_steps=9 format=3 uid="uid://nyx8561rtbs1"]
 
 [ext_resource type="Script" path="res://scripts/objects/portal.cs" id="1_xbqg8"]
-[ext_resource type="PackedScene" uid="uid://co2le5hjxt5h6" path="res://Scenes/levels/fail.tscn" id="2_dyun8"]
 [ext_resource type="Texture2D" uid="uid://guotjrtg6kk6" path="res://icon.svg" id="2_l22lw"]
 [ext_resource type="PackedScene" uid="uid://bbt4n2kfoknh5" path="res://Scenes/Effects/Portal_Mask_Effect.tscn" id="4_036vo"]
 
@@ -33,7 +32,7 @@ height = 2
 [node name="Portal" type="Node2D" groups=["Portal"]]
 script = ExtResource("1_xbqg8")
 suckingPower = 0.1
-failScene = ExtResource("2_dyun8")
+failScene = "res://Scenes/levels/fail.tscn"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, 9.53674e-06)

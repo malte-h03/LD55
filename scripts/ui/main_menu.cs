@@ -12,7 +12,7 @@ public partial class main_menu : Control
 	[Export] ColorRect blackScreen;
 	[Export] AudioStreamPlayer startGammeSound;
 
-	[Export] PackedScene startScene;
+	[Export(PropertyHint.File)] string startScene;
 	public override void _Ready()
 	{
 		sceneManager = GetTree().Root.GetNode<scene_manager>("SceneManager");

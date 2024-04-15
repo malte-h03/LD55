@@ -7,7 +7,7 @@ public partial class portal : Node2D
 	scene_manager sceneManager;
 	wave_manager WaveManager;
 	[Export] float suckingPower;
-	[Export] PackedScene failScene;
+	[Export(PropertyHint.File)] string failScene;
 
 	player playerRef;
 	bool isSucking = false;

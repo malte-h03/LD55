@@ -1,16 +1,15 @@
-[gd_scene load_steps=7 format=3 uid="uid://co86owqio2obq"]
+[gd_scene load_steps=6 format=3 uid="uid://co86owqio2obq"]
 
 [ext_resource type="Texture2D" uid="uid://d177b5dmvvcx2" path="res://2D/sprites/ui/start.png" id="1_rqvrr"]
 [ext_resource type="Script" path="res://scripts/ui/cutscene.cs" id="1_wexn8"]
 [ext_resource type="Theme" uid="uid://ce46ki84aldeq" path="res://UI/themes/menu_theme.tres" id="2_6saik"]
-[ext_resource type="PackedScene" uid="uid://bh0hgahs6gy6o" path="res://Scenes/levels/level_01.tscn" id="2_15dgp"]
 [ext_resource type="FontFile" uid="uid://r76c8nlc81cq" path="res://fonts/windows_command_prompt.ttf" id="3_28ofe"]
 [ext_resource type="AudioStream" uid="uid://cdvm6o18w24cy" path="res://sounds/Effects/ChutuluButtonPress.mp3" id="6_w1dai"]
 
 [node name="Cutscene" type="CanvasLayer" node_paths=PackedStringArray("blackScreen", "buttonAudio")]
 script = ExtResource("1_wexn8")
 blackScreen = NodePath("ColorRect")
-gameScene = ExtResource("2_15dgp")
+gameScene = "res://Scenes/levels/level_01.tscn"
 buttonAudio = NodePath("Button/AudioStreamPlayer")
 
 [node name="TextureRect" type="TextureRect" parent="."]

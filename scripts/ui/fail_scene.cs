@@ -3,8 +3,8 @@ using Godot;
 public partial class fail_scene : VBoxContainer
 {
 	// Called when the node enters the scene tree for the first time.
-	[Export] PackedScene startScene;
-	[Export] PackedScene menuScene;
+	[Export(PropertyHint.File)] string startScene;
+	[Export(PropertyHint.File)] string menuScene;
 
 	scene_manager SceneManager;
 

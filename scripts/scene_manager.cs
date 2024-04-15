@@ -8,8 +8,9 @@ public partial class scene_manager : Node
 		Viewport sceneRoot = GetTree().Root;
 		currentSceneNode = sceneRoot.GetChild(sceneRoot.GetChildCount() - 1);
 	}
-	public void GotoScene(PackedScene newScene)
+	public void GotoScene(string scenePath)
 	{
+		PackedScene newScene = GD.Load<PackedScene>(scenePath);
 		CallDeferred("DeferredGotoScene", newScene);
 	}
 	private void DeferredGotoScene(PackedScene newScene)

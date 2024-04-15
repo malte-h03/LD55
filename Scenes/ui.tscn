@@ -1,7 +1,6 @@
-[gd_scene load_steps=13 format=3 uid="uid://blxgm16scjxti"]
+[gd_scene load_steps=12 format=3 uid="uid://blxgm16scjxti"]
 
 [ext_resource type="Script" path="res://scripts/ui/main_menu.cs" id="1_yebkr"]
-[ext_resource type="PackedScene" uid="uid://co86owqio2obq" path="res://Scenes/cutscene.tscn" id="2_sqg3j"]
 [ext_resource type="Texture2D" uid="uid://cmrxj02on7fcj" path="res://2D/sprites/ui/stars.png" id="3_jrc0h"]
 [ext_resource type="FontFile" uid="uid://r76c8nlc81cq" path="res://fonts/windows_command_prompt.ttf" id="3_ttt15"]
 [ext_resource type="Theme" uid="uid://ce46ki84aldeq" path="res://UI/themes/menu_theme.tres" id="4_kgxpn"]
@@ -40,7 +39,7 @@ optionsButton = NodePath("VBoxContainer/Options")
 ExitButton = NodePath("VBoxContainer/Exit")
 blackScreen = NodePath("../ColorRect")
 startGammeSound = NodePath("VBoxContainer/Start game/AudioStreamPlayer")
-startScene = ExtResource("2_sqg3j")
+startScene = "res://Scenes/cutscene.tscn"
 
 [node name="TextureRect" type="TextureRect" parent="Menu_P"]
 texture_filter = 1

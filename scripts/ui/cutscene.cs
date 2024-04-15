@@ -6,7 +6,7 @@ public partial class cutscene : CanvasLayer
 {
 
 	[Export] ColorRect blackScreen;
-	[Export] PackedScene gameScene;
+	[Export(PropertyHint.File)] string gameScene;
 	[Export] AudioStreamPlayer buttonAudio;
 	scene_manager SceneManager;
 	// Called when the node enters the scene tree for the first time.
