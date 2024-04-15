@@ -145,7 +145,10 @@ public partial class agent : RigidBody2D
 		if (body.IsInGroup("Player"))
 		{
 			// playerRef = (player) body;
-			grabSound.Play(0);
+			if (!isGrabbing)
+			{
+				grabSound.Play(0);
+			}
 			isGrabbing = true;
 
 			grabbingBehavior();

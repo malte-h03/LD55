@@ -4,9 +4,9 @@
 [ext_resource type="Script" path="res://scripts/ui/cutscene.cs" id="1_wexn8"]
 [ext_resource type="Theme" uid="uid://ce46ki84aldeq" path="res://UI/themes/menu_theme.tres" id="2_6saik"]
 [ext_resource type="FontFile" uid="uid://r76c8nlc81cq" path="res://fonts/windows_command_prompt.ttf" id="3_28ofe"]
-[ext_resource type="AudioStream" uid="uid://ck8d51bhdt8f0" path="res://Sounds/Music/ChutuluMenu.mp3" id="6_qslag"]
-[ext_resource type="AudioStream" uid="uid://cdvm6o18w24cy" path="res://Sounds/Effects/ChutuluButtonPress.mp3" id="6_w1dai"]
-[ext_resource type="AudioStream" uid="uid://d0ggwcs6ex5rn" path="res://Sounds/Effects/PrettyGood.mp3" id="7_kuf3o"]
+[ext_resource type="AudioStream" uid="uid://ck8d51bhdt8f0" path="res://sounds/Music/ChutuluMenu.mp3" id="6_qslag"]
+[ext_resource type="AudioStream" uid="uid://cdvm6o18w24cy" path="res://sounds/Effects/ChutuluButtonPress.mp3" id="6_w1dai"]
+[ext_resource type="AudioStream" uid="uid://d0ggwcs6ex5rn" path="res://sounds/Effects/PrettyGood.mp3" id="7_kuf3o"]
 
 [node name="Cutscene" type="CanvasLayer" node_paths=PackedStringArray("blackScreen", "buttonAudio")]
 script = ExtResource("1_wexn8")
@@ -16,8 +16,11 @@ buttonAudio = NodePath("Button/AudioStreamPlayer")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 texture_filter = 1
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("1_rqvrr")
 
 [node name="Button" type="Button" parent="."]
