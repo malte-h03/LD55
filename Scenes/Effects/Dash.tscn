@@ -1,8 +1,9 @@
-[gd_scene load_steps=23 format=3 uid="uid://d1uccapfbtque"]
+[gd_scene load_steps=24 format=3 uid="uid://d1uccapfbtque"]
 
 [ext_resource type="Script" path="res://Scenes/Effects/Dash.cs" id="1_cve1a"]
 [ext_resource type="Shader" path="res://Scenes/Effects/Dash.gdshader" id="1_egttq"]
 [ext_resource type="Shader" path="res://Scenes/Effects/SecondaryEffect.gdshader" id="3_wikce"]
+[ext_resource type="AudioStream" uid="uid://c5uy60mirl4cv" path="res://sounds/Effects/ChutuluDash.mp3" id="4_myfoe"]
 
 [sub_resource type="Gradient" id="Gradient_e4o42"]
 offsets = PackedFloat32Array(0.52381, 0.785714, 1)
@@ -96,10 +97,11 @@ shader = ExtResource("3_wikce")
 shader_parameter/newRes = 2.0
 shader_parameter/effectColor = null
 
-[node name="DashEffect" type="Node2D" node_paths=PackedStringArray("dashTimer", "ParticleResetTimer", "particle", "particle2", "particle3")]
+[node name="DashEffect" type="Node2D" node_paths=PackedStringArray("dashTimer", "ParticleResetTimer", "dashSound", "particle", "particle2", "particle3")]
 script = ExtResource("1_cve1a")
 dashTimer = NodePath("Timer")
 ParticleResetTimer = NodePath("ParticleResetTimer")
+dashSound = NodePath("AudioStreamPlayer")
 particle = NodePath("DashAnchor/DashParticle")
 particle2 = NodePath("DashAnchor/DashParticle2")
 particle3 = NodePath("DashAnchor/DashParticle3")
@@ -154,6 +156,9 @@ fixed_fps = 500
 wait_time = 0.09
 one_shot = true
 autostart = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_myfoe")
 
 [connection signal="timeout" from="Timer" to="." method="_on_dash_timer_timeout"]
 [connection signal="timeout" from="ParticleResetTimer" to="." method="_on_particle_reset_timer_timeout"]

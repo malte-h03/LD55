@@ -7,6 +7,8 @@ public partial class player : CharacterBody2D
 	[Export] public double dashTime = 1.0;
 	[Export] public Timer dashTimer;
 
+	[Export] AudioStreamPlayer walkSound;
+
 	Timer slashTimer;
 
 	private wave_manager WaveManager;
@@ -23,6 +25,7 @@ public partial class player : CharacterBody2D
 
 	public override void _Ready()
 	{
+		walkSound.Playing = true;
 		WaveManager = GetTree().Root.GetNode<wave_manager>("WaveManager");
 	}
 
@@ -47,6 +50,14 @@ public partial class player : CharacterBody2D
 		Velocity = velocity + dragForce * dragForceMultiplier;
 		MoveAndSlide();
 
+		if (Velocity.Length() > 5)
+		{
+			walkSound.StreamPaused = false;
+		}
+		else
+		{
+			walkSound.StreamPaused = true;
+		}
 		// if(Input.IsActionJustPressed("ui_up"))
 		// {
 		// 	WaveManager.startWave();

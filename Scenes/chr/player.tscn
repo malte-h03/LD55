@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://d3dmat0xa1y0m"]
+[gd_scene load_steps=12 format=3 uid="uid://d3dmat0xa1y0m"]
 
 [ext_resource type="Script" path="res://scripts/chr/player.cs" id="1_giowr"]
 [ext_resource type="Texture2D" uid="uid://hs8l2mj85q4m" path="res://2D/sprites/chr/Idle_spritesheet.png" id="2_o8i7c"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://cbb2hnj6puieh" path="res://2D/sprites/chr/Idle_back_spritesheet.png" id="4_7bjfd"]
 [ext_resource type="Texture2D" uid="uid://be8kqjjuptajt" path="res://2D/sprites/chr/Idle_side_spritesheet.png" id="5_qp2by"]
 [ext_resource type="PackedScene" uid="uid://d1uccapfbtque" path="res://Scenes/Effects/Dash.tscn" id="7_bguoj"]
+[ext_resource type="AudioStream" uid="uid://c3u0hto52e8lv" path="res://sounds/Effects/player_walk.ogg" id="8_sucws"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3wj7n"]
 radius = 13.0
@@ -25,13 +26,14 @@ fill_to = Vector2(0.82906, 0.141026)
 
 [node name="Player" type="Node2D"]
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="." node_paths=PackedStringArray("dashTimer") groups=["Player"]]
+[node name="CharacterBody2D" type="CharacterBody2D" parent="." node_paths=PackedStringArray("dashTimer", "walkSound") groups=["Player"]]
 motion_mode = 1
 script = ExtResource("1_giowr")
 movementSpeed = 125.0
 dashLength = 100.0
 dashTime = 0.3
 dashTimer = NodePath("Dash timer")
+walkSound = NodePath("walk")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
 shape = SubResource("CapsuleShape2D_3wj7n")
@@ -60,5 +62,9 @@ texture_scale = 6.71
 wait_time = 5.0
 one_shot = true
 autostart = true
+
+[node name="walk" type="AudioStreamPlayer" parent="CharacterBody2D"]
+stream = ExtResource("8_sucws")
+volume_db = -9.33
 
 [connection signal="timeout" from="CharacterBody2D/Dash timer" to="CharacterBody2D" method="_on_dash_timer_timeout"]
