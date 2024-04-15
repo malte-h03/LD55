@@ -88,6 +88,15 @@ public partial class wave_manager : Node
 			EndWave(currentWave);
 		}
 		scoreText.Text = "score " + score;
+		Tween tween = GetTree().CreateTween();
+		RandomNumberGenerator rng = new();
+		float scale = 5.0f;
+		Vector2 prev = scoreText.GlobalPosition;
+
+		for (int i = 0; i < 5; i++)
+			tween.TweenProperty(scoreText, "global_position", scoreText.GlobalPosition + new Vector2(rng.RandfRange(-scale, scale), rng.RandfRange(-scale, scale)), 0.02);
+
+		tween.TweenProperty(scoreText, "global_position", prev, 0.02);
 	}
 
 	public async void EndWave(int wave)
@@ -95,7 +104,6 @@ public partial class wave_manager : Node
 		grabbersInWave = (int) Mathf.Floor(grabbersInWave * waveMultiplier);
 		currentWave = wave + 1;
 		totalPortals++;
-
 		GD.Print("End wave", wave, " start ", currentWave);
 		await Task.Delay((int) (waveDelay * 1000));
 

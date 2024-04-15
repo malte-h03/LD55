@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bh0hgahs6gy6o"]
+[gd_scene load_steps=20 format=3 uid="uid://bh0hgahs6gy6o"]
 
 [ext_resource type="Script" path="res://scripts/game_start.cs" id="1_e7ml5"]
 [ext_resource type="PackedScene" uid="uid://wyn8kbojvoci" path="res://Scenes/levels/env.tscn" id="1_hv3nu"]
@@ -9,6 +9,7 @@
 [ext_resource type="AudioStream" uid="uid://b12r7n1ojqa73" path="res://sounds/Music/DouDouDou_Intro.mp3" id="7_igkm5"]
 [ext_resource type="Script" path="res://scripts/music/music_mixer.cs" id="8_vxnml"]
 [ext_resource type="AudioStream" uid="uid://qs0ylwsq42v2" path="res://sounds/Music/DouDouDouLOOP.mp3" id="9_fjldh"]
+[ext_resource type="PackedScene" uid="uid://ceo8xs7c3p0a1" path="res://Scenes/objects/pickupspawner.tscn" id="10_k6mgu"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_ka7qk"]
 polygon = PackedVector2Array(-1206, 438, -1143, 438, -1143, 340, -1210, 339, -1212, 374, -1245, 375, -1241, 594, -990, 596, -989, 568, -1208, 568)
@@ -179,5 +180,32 @@ color = Color(0.937255, 0.545098, 0.427451, 1)
 energy = 2.23
 shadow_enabled = true
 texture = SubResource("GradientTexture2D_vyped")
+
+[node name="Pickupspawner" parent="." node_paths=PackedStringArray("points") instance=ExtResource("10_k6mgu")]
+points = [NodePath("Marker2D"), NodePath("Marker2D2"), NodePath("Marker2D3"), NodePath("Marker2D4"), NodePath("Marker2D5"), NodePath("Marker2D6"), NodePath("Marker2D7"), NodePath("Marker2D8")]
+
+[node name="Marker2D" type="Marker2D" parent="Pickupspawner"]
+position = Vector2(-79, 468)
+
+[node name="Marker2D2" type="Marker2D" parent="Pickupspawner"]
+position = Vector2(651, 257)
+
+[node name="Marker2D3" type="Marker2D" parent="Pickupspawner"]
+position = Vector2(475, 561)
+
+[node name="Marker2D4" type="Marker2D" parent="Pickupspawner"]
+position = Vector2(-92, 110)
+
+[node name="Marker2D5" type="Marker2D" parent="Pickupspawner"]
+position = Vector2(253, 152)
+
+[node name="Marker2D6" type="Marker2D" parent="Pickupspawner"]
+position = Vector2(288, -240)
+
+[node name="Marker2D7" type="Marker2D" parent="Pickupspawner"]
+position = Vector2(-161, -111)
+
+[node name="Marker2D8" type="Marker2D" parent="Pickupspawner"]
+position = Vector2(669, -166)
 
 [connection signal="finished" from="intro" to="intro" method="_on_finished"]

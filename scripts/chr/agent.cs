@@ -129,8 +129,10 @@ public partial class agent : RigidBody2D
 	{
 		enemyDies.Play(0);
 		WaveManager.EnemyDie(this, 1000);
-		QueueFree();
+		GetParent().QueueFree();
 	}
+
+	
 
     public void _on_area_2d_body_entered(Node2D body)
 	{

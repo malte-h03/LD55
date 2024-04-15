@@ -1,0 +1,71 @@
+[gd_scene load_steps=10 format=3 uid="uid://cybhub2h7b3kp"]
+
+[ext_resource type="Script" path="res://scripts/objects/pickup.cs" id="1_tijbp"]
+[ext_resource type="Texture2D" uid="uid://jfy67x53katq" path="res://2D/sprites/pickup.png" id="2_u73k1"]
+[ext_resource type="FontFile" uid="uid://r76c8nlc81cq" path="res://fonts/windows_command_prompt.ttf" id="3_5cmdx"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_f1wgd"]
+radius = 26.3059
+
+[sub_resource type="Gradient" id="Gradient_wa6xc"]
+offsets = PackedFloat32Array(0, 0.0602837, 0.117021, 0.219858, 0.343972, 0.471631, 0.712766, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.635205, 0.635205, 0.635205, 1, 0.469389, 0.469389, 0.469389, 1, 0.3212, 0.3212, 0.3212, 1, 0.202649, 0.202649, 0.202649, 1, 0.117156, 0.117156, 0.117156, 1, 0.0248227, 0.0248227, 0.0248227, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_3pbln"]
+gradient = SubResource("Gradient_wa6xc")
+fill = 1
+fill_from = Vector2(0.504274, 0.508547)
+fill_to = Vector2(0.970085, 0.0470085)
+
+[sub_resource type="Curve" id="Curve_cinmu"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1e-05, 0), 0.0, 0.0, 0, 0, Vector2(0.489209, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_8e0bx"]
+curve = SubResource("Curve_cinmu")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1vy4i"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 19.05
+gravity = Vector3(0, -40, 0)
+scale_curve = SubResource("CurveTexture_8e0bx")
+turbulence_enabled = true
+
+[node name="Pickup" type="Node2D" node_paths=PackedStringArray("BuffText", "BuffIcon", "BuffArea")]
+script = ExtResource("1_tijbp")
+BuffText = NodePath("Label")
+BuffIcon = NodePath("Sprite2D")
+BuffArea = NodePath("Area2D/CollisionShape2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_u73k1")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_f1wgd")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+color = Color(0.392157, 0.701961, 0.466667, 1)
+energy = 1.7
+texture = SubResource("GradientTexture2D_3pbln")
+texture_scale = 1.4
+
+[node name="Label" type="Label" parent="."]
+modulate = Color(1, 1, 1, 0)
+offset_left = -19.0
+offset_top = -40.0
+offset_right = 21.0
+offset_bottom = -17.0
+theme_override_fonts/font = ExtResource("3_5cmdx")
+theme_override_font_sizes/font_size = 25
+text = "1 UP"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+process_material = SubResource("ParticleProcessMaterial_1vy4i")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

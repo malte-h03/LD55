@@ -31,7 +31,7 @@ height = 2
 
 [node name="Portal" type="Node2D" groups=["Portal"]]
 script = ExtResource("1_xbqg8")
-suckingPower = 0.1
+suckingPower = 0.25
 failScene = "res://Scenes/levels/fail.tscn"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
