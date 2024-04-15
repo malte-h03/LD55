@@ -7,7 +7,8 @@ public partial class Dash : Node2D
 	
 	[Export] Timer dashTimer;
 	[Export] Timer ParticleResetTimer;
-	
+	[Export] AudioStreamPlayer dashSound;
+
 	[Export] CpuParticles2D particle;
 	[Export] Node2D particle2;
 	[Export] Node2D particle3;
@@ -36,6 +37,7 @@ public partial class Dash : Node2D
 	{
 		if (Input.IsActionJustPressed("DASH") && playerRef.dashReady == true)
 		{
+			dashSound.Play(0);
 			particle.Emitting = true;
 			particleGPU.Emitting = true;
 			particleGPU2.Emitting = true;

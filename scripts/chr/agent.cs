@@ -21,6 +21,8 @@ public partial class agent : RigidBody2D
 	[Export] private Texture2D handGrabbed;
 	[Export] private Color armColor;
 
+	[Export] AudioStreamPlayer grabSound;
+
 	public bool isGrabbing = false;
 	bool letGo = false;
 
@@ -143,6 +145,7 @@ public partial class agent : RigidBody2D
 		if (body.IsInGroup("Player"))
 		{
 			// playerRef = (player) body;
+			grabSound.Play(0);
 			isGrabbing = true;
 
 			grabbingBehavior();
