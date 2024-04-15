@@ -1,9 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://beer0e1wimywf"]
+[gd_scene load_steps=20 format=3 uid="uid://beer0e1wimywf"]
 
 [ext_resource type="Script" path="res://scripts/effects/Swipe.cs" id="1_2xepc"]
 [ext_resource type="Shader" path="res://Shaders/Swipe.gdshader" id="1_4fguk"]
 [ext_resource type="Texture2D" uid="uid://bh85wy3hucqe8" path="res://2D/sprites/FX/gradient.png" id="3_iddby"]
-[ext_resource type="AudioStream" uid="uid://ilij1wdigxtb" path="res://sounds/Effects/WeaponSwosh.mp3" id="4_5gana"]
+[ext_resource type="AudioStream" uid="uid://ilij1wdigxtb" path="res://Sounds/Effects/WeaponSwosh.mp3" id="4_5gana"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bp1w3"]
 size = Vector2(84, 82)
@@ -30,7 +30,7 @@ shader_parameter/circleRotationMask = -26.0
 shader_parameter/circleRotationSwipe = 1.5
 shader_parameter/circlePositionMask = Vector2(-0.5, 0.75)
 shader_parameter/circlePositionSwipe = Vector2(0.5, 1.5)
-shader_parameter/newRes = 60.0
+shader_parameter/newRes = 48.0
 shader_parameter/SwipeColor = Vector4(1.725, 0.575, 1.91, 0)
 shader_parameter/noise = SubResource("NoiseTexture2D_jxdyb")
 shader_parameter/band = SubResource("GradientTexture2D_hqfar")
@@ -43,11 +43,58 @@ colors = PackedColorArray(0, 0, 0, 1, 0.425573, 0.425573, 0.425573, 1, 1, 1, 1, 
 gradient = SubResource("Gradient_e0v1f")
 fill_to = Vector2(1, 0.00854701)
 
-[node name="SwipeEffect" type="Node2D" node_paths=PackedStringArray("slashTimer", "damageZone", "particle", "swoosh")]
+[sub_resource type="Curve" id="Curve_ym11w"]
+_data = [Vector2(0.558252, 0), 0.0, 0.0, 0, 0, Vector2(0.73301, 0.993993), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_xdavo"]
+width = 64
+curve = SubResource("Curve_ym11w")
+
+[sub_resource type="Curve" id="Curve_bow4a"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_d3s6l"]
+curve = SubResource("Curve_bow4a")
+
+[sub_resource type="Curve" id="Curve_n7grp"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_cu8fh"]
+curve = SubResource("Curve_n7grp")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_4llfb"]
+particle_flag_disable_z = true
+emission_shape_offset = Vector3(47.46, -50.46, 0)
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 24.285
+emission_ring_radius = 28.28
+emission_ring_inner_radius = 5.49
+direction = Vector3(0, 1, 0)
+spread = 0.0
+initial_velocity_max = 143.1
+gravity = Vector3(0, 0, 0)
+scale_min = 2.0
+scale_max = 4.0
+color = Color(1, 0, 1, 1)
+alpha_curve = SubResource("CurveTexture_xdavo")
+emission_curve = SubResource("CurveTexture_d3s6l")
+turbulence_enabled = true
+turbulence_noise_strength = 20.0
+turbulence_noise_scale = 2.195
+turbulence_noise_speed = Vector3(0, 500, 0)
+turbulence_influence_max = 1.0
+turbulence_influence_over_life = SubResource("CurveTexture_cu8fh")
+
+[node name="SwipeEffect" type="Node2D" node_paths=PackedStringArray("slashTimer", "damageZone", "particle", "particle2", "swoosh")]
 script = ExtResource("1_2xepc")
 slashTimer = NodePath("Timer")
 damageZone = NodePath("swipe anchor/Area2D")
 particle = NodePath("swipe anchor/SwipeParticle")
+particle2 = NodePath("swipe anchor/GPUParticles2D")
 swoosh = NodePath("AudioStreamPlayer")
 
 [node name="Timer" type="Timer" parent="."]
@@ -70,7 +117,7 @@ texture = ExtResource("3_iddby")
 
 [node name="SwipeParticle" type="CPUParticles2D" parent="swipe anchor"]
 material = SubResource("ShaderMaterial_pun3k")
-position = Vector2(41, 0)
+position = Vector2(78.305, 0)
 rotation = 1.5708
 emitting = false
 amount = 1
@@ -79,7 +126,18 @@ one_shot = true
 local_coords = true
 texture = SubResource("GradientTexture2D_16tk6")
 gravity = Vector2(0, 0)
+scale_amount_min = 2.5
+scale_amount_max = 2.5
 color = Color(1, 1, 1, 0)
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="swipe anchor"]
+emitting = false
+amount = 50
+process_material = SubResource("ParticleProcessMaterial_4llfb")
+lifetime = 1.25
+one_shot = true
+speed_scale = 2.85
+explosiveness = 0.43
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_5gana")
