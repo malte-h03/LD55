@@ -36,7 +36,7 @@ public partial class HUD : CanvasLayer
 		waveBar.Value = grabbersLeft / (float) grabbersInWave;
 		Tween tween = GetTree().CreateTween();
 		RandomNumberGenerator rng = new();
-		float scale = 10.0f;
+		float scale = 5.0f;
 		Vector2 prev = waveBar.GlobalPosition;
 
 		for (int i = 0; i < 5; i++)

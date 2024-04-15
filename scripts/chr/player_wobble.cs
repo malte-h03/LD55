@@ -53,10 +53,7 @@ public partial class player_wobble : Sprite2D
 			Frame = (int) Mathf.Floor((float) realtime * 4.0f) % (Hframes);
 		}
 
-		GD.Print(Frame);
 		time += delta * root.Velocity.Length() * 0.1f;
 		realtime += Mathf.Min(delta, 1.0);
-
-		GD.Print(realtime);
 	}
 }

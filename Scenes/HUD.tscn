@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://dr7lrbb57unf0"]
+[gd_scene load_steps=6 format=3 uid="uid://dr7lrbb57unf0"]
 
 [ext_resource type="Script" path="res://scripts/ui/HUD.cs" id="1_hn4oe"]
 [ext_resource type="FontFile" uid="uid://r76c8nlc81cq" path="res://fonts/windows_command_prompt.ttf" id="2_em4et"]
+[ext_resource type="Theme" uid="uid://ce46ki84aldeq" path="res://UI/themes/menu_theme.tres" id="3_3n48l"]
 [ext_resource type="FontFile" uid="uid://b7g7n8gokn1d7" path="res://fonts/sd_auto_pilot.ttf" id="3_qpoby"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_p5fi4"]
@@ -43,8 +44,9 @@ offset_right = 134.0
 offset_bottom = -13.0
 grow_horizontal = 2
 grow_vertical = 0
+theme = ExtResource("3_3n48l")
 max_value = 1.0
-value = 0.51
+value = 1.0
 show_percentage = false
 
 [node name="CountDown" type="Label" parent="."]

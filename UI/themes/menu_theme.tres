@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=5 format=3 uid="uid://ce46ki84aldeq"]
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://ce46ki84aldeq"]
 
 [ext_resource type="Texture2D" uid="uid://bseruacaqlmhf" path="res://2D/sprites/ui/buttonskin.png" id="1_brbv5"]
 
@@ -23,8 +23,11 @@ texture_margin_bottom = 5.0
 axis_stretch_horizontal = 2
 axis_stretch_vertical = 2
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nh7sb"]
+
 [resource]
 Button/styles/disabled = null
 Button/styles/focus = SubResource("StyleBoxEmpty_0dco2")
 Button/styles/hover = SubResource("StyleBoxTexture_xhnny")
 Button/styles/normal = SubResource("StyleBoxTexture_7ft3v")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_nh7sb")

@@ -5,7 +5,8 @@ using Godot;
 public partial class agent : RigidBody2D
 {
 	// Called when the node enters the scene tree for the first time.
-	[Export] private float health = 100.0f;
+	[Export] private float totalHealth = 100.0f;
+	private float health = 100.0f;
 	[Export] private float movementSpeed = 100.0f;
 	[Export] private float grabPower = 0.2f;
 	[Export] private float maxVelocity = 20.0f;
@@ -31,8 +32,15 @@ public partial class agent : RigidBody2D
 	Line2D hand;
 	RandomNumberGenerator rng;
 	Vector2 noiseOffset;
+
+	public Vector2 GetHealth()
+	{
+		return new Vector2(health, totalHealth);
+	}
+
 	public override void _Ready()
 	{
+		health = totalHealth;
 		playerRef = (player) GetTree().GetFirstNodeInGroup("Player");
 
 		hand = new();
