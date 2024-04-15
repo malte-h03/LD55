@@ -6,16 +6,23 @@ public partial class HUD : CanvasLayer
 	// Called when the node enters the scene tree for the first time.
 	[Export] ProgressBar waveBar;
 	[Export] Label countDown;
+	[Export] ProgressBar stamBar;
+
+	player playerRef;
 
 	int grabbersInWave;
 
 	public override void _Ready()
 	{
+		playerRef = (player) GetTree().GetFirstNodeInGroup("Player");
+		
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
+		float stamDiv = (float)(playerRef.dashTimer.TimeLeft / playerRef.dashTimer.WaitTime);
+		stamBar.Value = 1 - stamDiv;
 	}
 
 	public void WaveStarted(int grabbersTotal)

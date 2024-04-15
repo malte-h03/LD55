@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 using Godot;
 
 public partial class agent : RigidBody2D
@@ -125,10 +126,13 @@ public partial class agent : RigidBody2D
         
     }
 
-	public void Kill()
+	public async void Kill()
 	{
 		enemyDies.Play(0);
 		WaveManager.EnemyDie(this, 1000);
+		
+		await Task.Delay(1000);
+
 		GetParent().QueueFree();
 	}
 
