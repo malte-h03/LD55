@@ -70,12 +70,19 @@ public partial class wave_manager : Node
 		}
 	}
 
+
 	public void EnemyDie(Node2D body, int getScore)
 	{
 		grabbersLeft--;
 		score += getScore;
+		
+		var scene = GD.Load<PackedScene>("res://Scenes/Effects/EnemyDies.tscn");
+		var EnemyDies = scene.Instantiate();
+		AddChild(EnemyDies);
+		((Node2D)EnemyDies).GlobalPosition = body.GlobalPosition;
+		
 		GetTree().CallGroup("WaveSubscriber", "EnemyDie", grabbersLeft, score);
-
+		
 		if (grabbersLeft == 0)
 		{
 			EndWave(currentWave);
