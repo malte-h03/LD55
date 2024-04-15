@@ -34,7 +34,7 @@ public partial class Dash : Node2D
 
 	public override void _Input(InputEvent @event)
 	{
-		if (Input.IsActionJustPressed("DASH"))
+		if (Input.IsActionJustPressed("DASH") && playerRef.dashReady == true)
 		{
 			particle.Emitting = true;
 			particleGPU.Emitting = true;

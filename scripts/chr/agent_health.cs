@@ -12,7 +12,6 @@ public partial class agent_health : ProgressBar
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		GD.Print(Agent.GetHealth());
 		GlobalPosition = Agent.GlobalPosition;
 		Value = Agent.GetHealth().X / Agent.GetHealth().Y;
 	}

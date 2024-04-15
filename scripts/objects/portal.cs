@@ -48,6 +48,10 @@ public partial class portal : Node2D
 
 	public void _on_circle_body_exited(Node body)
 	{
-		isSucking = false;
+		if (body.IsInGroup("Player"))
+		{
+			isSucking = false;
+			playerRef.dragForce = Vector2.Zero;
+		}
 	}
 }

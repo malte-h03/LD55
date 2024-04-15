@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://ceo8xs7c3p0a1"]
+
+[ext_resource type="Script" path="res://scripts/objects/Pickupspawner.cs" id="1_exe3n"]
+[ext_resource type="PackedScene" uid="uid://cybhub2h7b3kp" path="res://Scenes/objects/pickup.tscn" id="2_lrcw2"]
+
+[node name="Pickupspawner" type="Node2D" node_paths=PackedStringArray("pickupTimer", "points")]
+script = ExtResource("1_exe3n")
+pickupTimer = NodePath("Timer")
+pickup = ExtResource("2_lrcw2")
+points = []
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 15.0
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
