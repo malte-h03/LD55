@@ -8,10 +8,11 @@
 [sub_resource type="LabelSettings" id="LabelSettings_p5fi4"]
 font_size = 71
 
-[node name="Hud" type="CanvasLayer" node_paths=PackedStringArray("waveBar", "countDown") groups=["WaveSubscriber"]]
+[node name="Hud" type="CanvasLayer" node_paths=PackedStringArray("waveBar", "countDown", "stamBar") groups=["WaveSubscriber"]]
 script = ExtResource("1_hn4oe")
 waveBar = NodePath("ProgressBar")
 countDown = NodePath("CountDown")
+stamBar = NodePath("stamina/ProgressBar")
 
 [node name="Container" type="Container" parent="."]
 anchors_preset = 15
@@ -67,11 +68,23 @@ text = "3"
 label_settings = SubResource("LabelSettings_p5fi4")
 horizontal_alignment = 1
 
-[node name="score" type="Label" parent="."]
+[node name="stamina" type="Label" parent="."]
 offset_left = 5.0
-offset_top = 216.0
+offset_top = 208.0
 offset_right = 114.0
-offset_bottom = 253.0
+offset_bottom = 245.0
 theme_override_fonts/font = ExtResource("2_em4et")
 theme_override_font_sizes/font_size = 26
 text = "stamina:"
+
+[node name="ProgressBar" type="ProgressBar" parent="stamina"]
+modulate = Color(0, 0.984314, 0.737255, 1)
+layout_mode = 0
+offset_left = -1.0
+offset_top = 22.0
+offset_right = 93.0
+offset_bottom = 31.0
+theme = ExtResource("3_3n48l")
+max_value = 1.0
+value = 1.0
+show_percentage = false
