@@ -34,6 +34,7 @@ public partial class agent : RigidBody2D
 
 	Line2D hand;
 	RandomNumberGenerator rng;
+	float randVal;
 	Vector2 noiseOffset;
 
 	public Vector2 GetHealth()
@@ -59,8 +60,8 @@ public partial class agent : RigidBody2D
 	{
 		if (isGrabbing)
 		{
-			
-			if (playerRef.isDashing || (playerRef.GlobalPosition - GlobalPosition).Length() > grabDistance * 3.0f)
+			// RandomNumberGenerator rng = new();	
+			if ((playerRef.isDashing && (randVal < 0.33f)) || (playerRef.GlobalPosition - GlobalPosition).Length() > grabDistance * 3.0f)
 			{
 				hand.ClearPoints();//.SetPointPosition(1, Position);
 				playerRef.dragForce = Vector2.Zero;
@@ -155,8 +156,14 @@ public partial class agent : RigidBody2D
 		}
 	}
 
+	public void OnPlayerDash()
+	{
+		randVal = rng.RandfRange(0, 1);
+	}
+
 	private void grabbingBehavior()
 	{
+		// randVal = rng.RandfRange(0, 1);
 		if (hand.Points.Length < 2)
 		{
 			hand.AddPoint(Vector2.Zero, 0);

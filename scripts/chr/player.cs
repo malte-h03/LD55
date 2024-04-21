@@ -69,6 +69,7 @@ public partial class player : CharacterBody2D
 	{
 		if (Input.IsActionJustPressed("DASH") && dashReady)
 		{
+			GetTree().CallGroup("Enemy", "OnPlayerDash");
 			GD.Print("Dash ready");
 			dashReady = false;
 			isDashing = true;

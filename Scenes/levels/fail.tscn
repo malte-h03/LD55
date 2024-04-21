@@ -22,17 +22,21 @@ shader_parameter/offset = 0.0
 shader = ExtResource("4_v1ppg")
 shader_parameter/offset = 2.07
 
-[node name="Fail" type="CanvasLayer" node_paths=PackedStringArray("summonText", "blackscreen", "start", "menu")]
+[node name="Fail" type="CanvasLayer" node_paths=PackedStringArray("summonText", "blackscreen", "start", "menu", "scoreText")]
 script = ExtResource("1_g21di")
 summonText = NodePath("VBoxContainer/Label")
 blackscreen = NodePath("ColorRect")
 start = NodePath("VBoxContainer/try again")
 menu = NodePath("VBoxContainer/menu")
+scoreText = NodePath("Label")
 
 [node name="TextureRect2" type="TextureRect" parent="."]
 texture_filter = 1
-offset_right = 480.0
-offset_bottom = 260.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("1_ui6w8")
 expand_mode = 2
 
@@ -103,6 +107,17 @@ text = "menu
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("9_nsnpf")
 autoplay = true
+
+[node name="Label" type="Label" parent="."]
+modulate = Color(0.113725, 0.133333, 0.270588, 1)
+self_modulate = Color(1, 1, 1, 0)
+offset_left = 119.0
+offset_top = 5.0
+offset_right = 271.0
+offset_bottom = 37.0
+theme_override_fonts/font = ExtResource("2_hl52f")
+theme_override_font_sizes/font_size = 31
+text = "Final Score: "
 
 [connection signal="pressed" from="VBoxContainer/try again" to="VBoxContainer" method="_on_try_again_pressed"]
 [connection signal="pressed" from="VBoxContainer/menu" to="VBoxContainer" method="_on_menu_pressed"]

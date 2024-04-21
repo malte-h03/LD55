@@ -11,7 +11,7 @@ public partial class wave_manager : Node
 	int totalPortals;// = startPortals;
 	PackedScene portal;
 
-	private int score = 0;
+	public int score = 0;
 
 	float waveDelay = 1.0f;
 
